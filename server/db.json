@@ -1,0 +1,652 @@
+{
+  "simulation": {
+    "dashboard": {
+      "totalOrders": 156,
+      "processingOrders": 42,
+      "deliveredOrders": 98,
+      "returnOrFailedOrders": 16,
+      "totalInventoryUnits": 8450,
+      "channelBreakdown": [
+        {
+          "channel": "Website",
+          "totalOrders": 38,
+          "revenue": 85400000
+        },
+        {
+          "channel": "Shopee",
+          "totalOrders": 52,
+          "revenue": 112000000
+        },
+        {
+          "channel": "TikTok Shop",
+          "totalOrders": 45,
+          "revenue": 92500000
+        },
+        {
+          "channel": "Facebook",
+          "totalOrders": 15,
+          "revenue": 32000000
+        },
+        {
+          "channel": "Offline",
+          "totalOrders": 6,
+          "revenue": 12800000
+        }
+      ],
+      "recentOrders": []
+    },
+    "products": [
+      {
+        "id": "p1",
+        "sku": "LG-HEAD-001",
+        "name": "Tai nghe chống ồn AirFlow Pro",
+        "category": "Thiết bị điện tử",
+        "price": 1590000,
+        "thumbnail": "/images/products/headphone.png",
+        "unit": "chiếc",
+        "tags": [
+          "best seller",
+          "premium"
+        ]
+      },
+      {
+        "id": "p2",
+        "sku": "LG-WATCH-002",
+        "name": "Đồng hồ thông minh RouteFit S",
+        "category": "Thiết bị đeo",
+        "price": 2390000,
+        "thumbnail": "/images/products/watch.png",
+        "unit": "chiếc",
+        "tags": [
+          "new",
+          "tracking"
+        ]
+      },
+      {
+        "id": "p3",
+        "sku": "LG-BAG-003",
+        "name": "Túi giao nhận FlexCarry 25L",
+        "category": "Phụ kiện logistics",
+        "price": 690000,
+        "thumbnail": "/images/products/bag.png",
+        "unit": "túi",
+        "tags": [
+          "warehouse",
+          "durable"
+        ]
+      },
+      {
+        "id": "p4",
+        "sku": "LG-SHOE-004",
+        "name": "Giày sneaker FleetMove",
+        "category": "Thời trang",
+        "price": 1190000,
+        "thumbnail": "/images/products/shoe.png",
+        "unit": "đôi",
+        "tags": [
+          "hot",
+          "fast pick"
+        ]
+      },
+      {
+        "id": "p5",
+        "sku": "LG-TSHIRT-005",
+        "name": "Áo thun điều phối Omni Tee",
+        "category": "Thời trang",
+        "price": 320000,
+        "thumbnail": "/images/products/tshirt.png",
+        "unit": "áo",
+        "tags": [
+          "uniform",
+          "lightweight"
+        ]
+      },
+      {
+        "id": "p6",
+        "sku": "LG-SCAN-006",
+        "name": "Máy quét mã đơn Pocket Scan X",
+        "category": "Thiết bị kho",
+        "price": 3490000,
+        "thumbnail": "/images/products/scanner.png",
+        "unit": "máy",
+        "tags": [
+          "ops",
+          "barcode"
+        ]
+      },
+      {
+        "id": "p7",
+        "sku": "LG-MOUSE-007",
+        "name": "Chuột không dây Precision M1",
+        "category": "Thiết bị điện tử",
+        "price": 450000,
+        "thumbnail": "/images/products/mouse.png",
+        "unit": "chiếc",
+        "tags": [
+          "wireless",
+          "office"
+        ]
+      },
+      {
+        "id": "p8",
+        "sku": "LG-KEYB-008",
+        "name": "Bàn phím cơ Silent Wave",
+        "category": "Thiết bị điện tử",
+        "price": 1850000,
+        "thumbnail": "/images/products/keyboard.png",
+        "unit": "chiếc",
+        "tags": [
+          "mechanical",
+          "silent"
+        ]
+      },
+      {
+        "id": "p9",
+        "sku": "LG-LAMP-009",
+        "name": "Đèn bàn thông minh SmartGlow",
+        "category": "Gia dụng thông minh",
+        "price": 720000,
+        "thumbnail": "/images/products/lamp.png",
+        "unit": "chiếc",
+        "tags": [
+          "smart",
+          "lighting"
+        ]
+      },
+      {
+        "id": "p10",
+        "sku": "LG-BACK-010",
+        "name": "Balo chống nước GuardPack 30L",
+        "category": "Thời trang",
+        "price": 950000,
+        "thumbnail": "/images/products/backpack.png",
+        "unit": "chiếc",
+        "tags": [
+          "waterproof",
+          "travel"
+        ]
+      },
+      {
+        "id": "p11",
+        "sku": "LG-CAM-011",
+        "name": "Camera an ninh Vision Pro 4K",
+        "category": "Thiết bị điện tử",
+        "price": 2890000,
+        "thumbnail": "/images/products/camera.png",
+        "unit": "chiếc",
+        "tags": [
+          "security",
+          "ai"
+        ]
+      },
+      {
+        "id": "p12",
+        "sku": "LG-ROBOT-012",
+        "name": "Robot hút bụi CleanBot Gen 3",
+        "category": "Gia dụng thông minh",
+        "price": 5490000,
+        "thumbnail": "/images/products/robot.png",
+        "unit": "chiếc",
+        "tags": [
+          "smart home",
+          "vacuum"
+        ]
+      },
+      {
+        "id": "p13",
+        "sku": "LG-POWER-013",
+        "name": "Pin sạc dự phòng SpeedCharge 20k",
+        "category": "Thiết bị điện tử",
+        "price": 850000,
+        "thumbnail": "/images/products/powerbank.png",
+        "unit": "chiếc",
+        "tags": [
+          "fast charge",
+          "travel"
+        ]
+      },
+      {
+        "id": "p14",
+        "sku": "LG-DRONE-014",
+        "name": "Drone giao hàng SkyMove D1",
+        "category": "Phụ kiện logistics",
+        "price": 12500000,
+        "thumbnail": "/images/products/drone.png",
+        "unit": "chiếc",
+        "tags": [
+          "delivery",
+          "high-tech"
+        ]
+      },
+      {
+        "id": "p15",
+        "sku": "LG-PRINTER-015",
+        "name": "Máy in tem nhãn LabelMax Express",
+        "category": "Thiết bị kho",
+        "price": 2150000,
+        "thumbnail": "/images/products/printer.png",
+        "unit": "máy",
+        "tags": [
+          "printing",
+          "shipping"
+        ]
+      }
+    ],
+    "fulfillmentPoints": [
+      {
+        "id": "fp1",
+        "code": "WH-HCM-01",
+        "name": "Kho trung tâm TP.HCM",
+        "type": "Warehouse",
+        "area": "Quận 7",
+        "address": "Khu chế xuất Tân Thuận, Quận 7, TP.HCM",
+        "handlingCapacity": 500,
+        "activeOrders": 45,
+        "inventory": [
+          {
+            "productId": "p1",
+            "availableQuantity": 150,
+            "reservedQuantity": 10,
+            "safetyStock": 20,
+            "updatedAt": "2026-04-09T10:00:00Z"
+          },
+          {
+            "productId": "p6",
+            "availableQuantity": 45,
+            "reservedQuantity": 2,
+            "safetyStock": 5,
+            "updatedAt": "2026-04-09T10:00:00Z"
+          },
+          {
+            "productId": "p14",
+            "availableQuantity": 5,
+            "reservedQuantity": 1,
+            "safetyStock": 2,
+            "updatedAt": "2026-04-09T10:00:00Z"
+          }
+        ]
+      },
+      {
+        "id": "fp2",
+        "code": "ST-Q1-01",
+        "name": "Cửa hàng Quận 1",
+        "type": "Store",
+        "area": "Quận 1",
+        "address": "45 Nguyễn Huệ, Quận 1, TP.HCM",
+        "handlingCapacity": 120,
+        "activeOrders": 18,
+        "inventory": [
+          {
+            "productId": "p1",
+            "availableQuantity": 25,
+            "reservedQuantity": 3,
+            "safetyStock": 5,
+            "updatedAt": "2026-04-09T10:05:00Z"
+          },
+          {
+            "productId": "p2",
+            "availableQuantity": 15,
+            "reservedQuantity": 2,
+            "safetyStock": 4,
+            "updatedAt": "2026-04-09T10:05:00Z"
+          }
+        ]
+      },
+      {
+        "id": "fp3",
+        "code": "ST-Q3-01",
+        "name": "Cửa hàng Quận 3",
+        "type": "Store",
+        "area": "Quận 3",
+        "address": "120 Lê Quý Đôn, Quận 3, TP.HCM",
+        "handlingCapacity": 100,
+        "activeOrders": 12,
+        "inventory": [
+          {
+            "productId": "p4",
+            "availableQuantity": 30,
+            "reservedQuantity": 4,
+            "safetyStock": 6,
+            "updatedAt": "2026-04-09T10:10:00Z"
+          },
+          {
+            "productId": "p11",
+            "availableQuantity": 10,
+            "reservedQuantity": 1,
+            "safetyStock": 3,
+            "updatedAt": "2026-04-09T10:10:00Z"
+          }
+        ]
+      },
+      {
+        "id": "fp4",
+        "code": "ST-Q7-01",
+        "name": "Cửa hàng Quận 7",
+        "type": "Store",
+        "area": "Quận 7",
+        "address": "Lotte Mart, Quận 7, TP.HCM",
+        "handlingCapacity": 150,
+        "activeOrders": 22,
+        "inventory": [
+          {
+            "productId": "p5",
+            "availableQuantity": 50,
+            "reservedQuantity": 8,
+            "safetyStock": 10,
+            "updatedAt": "2026-04-09T10:12:00Z"
+          },
+          {
+            "productId": "p13",
+            "availableQuantity": 40,
+            "reservedQuantity": 5,
+            "safetyStock": 8,
+            "updatedAt": "2026-04-09T10:12:00Z"
+          }
+        ]
+      },
+      {
+        "id": "fp5",
+        "code": "ST-TB-01",
+        "name": "Cửa hàng Tân Bình",
+        "type": "Store",
+        "area": "Tân Bình",
+        "address": "Phổ Quang, Tân Bình, TP.HCM",
+        "handlingCapacity": 110,
+        "activeOrders": 14,
+        "inventory": [
+          {
+            "productId": "p7",
+            "availableQuantity": 35,
+            "reservedQuantity": 4,
+            "safetyStock": 5,
+            "updatedAt": "2026-04-09T10:15:00Z"
+          },
+          {
+            "productId": "p12",
+            "availableQuantity": 8,
+            "reservedQuantity": 1,
+            "safetyStock": 2,
+            "updatedAt": "2026-04-09T10:15:00Z"
+          }
+        ]
+      },
+      {
+        "id": "fp6",
+        "code": "WH-LONGAN-01",
+        "name": "Kho trung chuyển Long An",
+        "type": "Warehouse",
+        "area": "Quận 10",
+        "address": "KCN Tân Đức, Long An",
+        "handlingCapacity": 800,
+        "activeOrders": 65,
+        "inventory": [
+          {
+            "productId": "p5",
+            "availableQuantity": 500,
+            "reservedQuantity": 50,
+            "safetyStock": 100,
+            "updatedAt": "2026-04-09T10:20:00Z"
+          },
+          {
+            "productId": "p3",
+            "availableQuantity": 400,
+            "reservedQuantity": 40,
+            "safetyStock": 80,
+            "updatedAt": "2026-04-09T10:20:00Z"
+          }
+        ]
+      }
+    ],
+    "orders": [
+      {
+        "id": "o1001",
+        "code": "ORD-20260409-1001",
+        "customerName": "Nguyễn Minh Khang",
+        "customerArea": "Quận 10",
+        "channel": "Shopee",
+        "fulfillmentMode": "Giao tận nơi",
+        "paymentMethod": "COD",
+        "status": "Đang giao",
+        "fulfilledByPointId": "fp1",
+        "fulfilledByPointName": "Kho trung tâm TP.HCM",
+        "shippingDistanceKm": 5.2,
+        "totalAmount": 1590000,
+        "items": [
+          {
+            "productId": "p1",
+            "quantity": 1,
+            "unitPrice": 1590000
+          }
+        ],
+        "notes": "Giao giờ hành chính",
+        "createdAt": "2026-04-09T08:30:00Z",
+        "updatedAt": "2026-04-09T10:15:00Z",
+        "timeline": [
+          {
+            "status": "Đã tiếp nhận",
+            "timestamp": "2026-04-09T08:30:00Z",
+            "note": "Tiếp nhận từ Shopee"
+          },
+          {
+            "status": "Đang giao",
+            "timestamp": "2026-04-09T10:15:00Z",
+            "note": "Shipper đã lấy hàng"
+          }
+        ],
+        "allocation": null
+      },
+      {
+        "id": "o1002",
+        "code": "ORD-20260409-1002",
+        "customerName": "Lê Thị Hồng",
+        "customerArea": "Quận 1",
+        "channel": "Website",
+        "fulfillmentMode": "Nhận tại cửa hàng",
+        "paymentMethod": "Đã thanh toán",
+        "status": "Giao thành công",
+        "fulfilledByPointId": "fp2",
+        "fulfilledByPointName": "Cửa hàng Quận 1",
+        "shippingDistanceKm": 0.5,
+        "totalAmount": 2390000,
+        "items": [
+          {
+            "productId": "p2",
+            "quantity": 1,
+            "unitPrice": 2390000
+          }
+        ],
+        "notes": "",
+        "createdAt": "2026-04-09T09:00:00Z",
+        "updatedAt": "2026-04-09T11:30:00Z",
+        "timeline": [
+          {
+            "status": "Giao thành công",
+            "timestamp": "2026-04-09T11:30:00Z",
+            "note": "Khách đã lấy hàng tại Store"
+          }
+        ],
+        "allocation": null
+      },
+      {
+        "id": "o1003",
+        "code": "ORD-20260409-1003",
+        "customerName": "Phạm Văn Nam",
+        "customerArea": "Thủ Đức",
+        "channel": "TikTok Shop",
+        "fulfillmentMode": "Giao tận nơi",
+        "paymentMethod": "COD",
+        "status": "Đang xử lý",
+        "fulfilledByPointId": "fp6",
+        "fulfilledByPointName": "Kho trung chuyển Long An",
+        "shippingDistanceKm": 25.5,
+        "totalAmount": 320000,
+        "items": [
+          {
+            "productId": "p5",
+            "quantity": 1,
+            "unitPrice": 320000
+          }
+        ],
+        "notes": "Giao cuối tuần",
+        "createdAt": "2026-04-09T11:45:00Z",
+        "updatedAt": "2026-04-09T12:00:00Z",
+        "timeline": [
+          {
+            "status": "Đã tiếp nhận",
+            "timestamp": "2026-04-09T11:45:00Z",
+            "note": "Đơn TikTok mới"
+          }
+        ],
+        "allocation": null
+      },
+      {
+        "id": "o1004",
+        "code": "ORD-20260409-1004",
+        "customerName": "Hoàng Anh Tuấn",
+        "customerArea": "Quận 7",
+        "channel": "Facebook",
+        "fulfillmentMode": "Giao tận nơi",
+        "paymentMethod": "COD",
+        "status": "Đóng gói",
+        "fulfilledByPointId": "fp4",
+        "fulfilledByPointName": "Cửa hàng Quận 7",
+        "shippingDistanceKm": 1.8,
+        "totalAmount": 850000,
+        "items": [
+          {
+            "productId": "p13",
+            "quantity": 1,
+            "unitPrice": 850000
+          }
+        ],
+        "notes": "Giao cho bảo vệ",
+        "createdAt": "2026-04-09T12:30:00Z",
+        "updatedAt": "2026-04-09T13:00:00Z",
+        "timeline": [
+          {
+            "status": "Đã tiếp nhận",
+            "timestamp": "2026-04-09T12:30:00Z",
+            "note": "Đơn từ Messenger"
+          },
+          {
+            "status": "Đã đóng gói",
+            "timestamp": "2026-04-09T13:00:00Z",
+            "note": "Đã dán tem vận chuyển"
+          }
+        ],
+        "allocation": null
+      },
+      {
+        "id": "o1005",
+        "code": "ORD-20260409-1005",
+        "customerName": "Đặng Minh Dự",
+        "customerArea": "Tân Bình",
+        "channel": "Shopee",
+        "fulfillmentMode": "Giao tận nơi",
+        "paymentMethod": "Đã thanh toán",
+        "status": "Hoàn hàng",
+        "fulfilledByPointId": "fp5",
+        "fulfilledByPointName": "Cửa hàng Tân Bình",
+        "shippingDistanceKm": 3.2,
+        "totalAmount": 450000,
+        "items": [
+          {
+            "productId": "p7",
+            "quantity": 1,
+            "unitPrice": 450000
+          }
+        ],
+        "notes": "Khách đổi ý",
+        "createdAt": "2026-04-09T10:30:00Z",
+        "updatedAt": "2026-04-09T14:00:00Z",
+        "timeline": [
+          {
+            "status": "Giao thất bại",
+            "timestamp": "2026-04-09T13:00:00Z",
+            "note": "Khách không nghe máy"
+          },
+          {
+            "status": "Hoàn hàng",
+            "timestamp": "2026-04-09T14:00:00Z",
+            "note": "Đã nhập lại kho"
+          }
+        ],
+        "allocation": null
+      }
+    ],
+    "logs": [
+      {
+        "id": "l1",
+        "level": "success",
+        "action": "order.created",
+        "message": "Tạo đơn ORD-20260409-1001 thành công",
+        "createdAt": "2026-04-09T08:30:00Z"
+      },
+      {
+        "id": "l2",
+        "level": "info",
+        "action": "inventory.synced",
+        "message": "Đã đồng bộ tồn kho từ 6 chi nhánh",
+        "createdAt": "2026-04-09T09:00:00Z"
+      },
+      {
+        "id": "l3",
+        "level": "warning",
+        "action": "allocation.failed",
+        "message": "Không tìm thấy điểm xử lý cho đơn ngoại tỉnh",
+        "createdAt": "2026-04-09T10:15:00Z"
+      },
+      {
+        "id": "l4",
+        "level": "error",
+        "action": "system.timeout",
+        "message": "Kết nối API vận chuyển bị gián đoạn",
+        "createdAt": "2026-04-09T11:00:00Z"
+      },
+      {
+        "id": "l5",
+        "level": "success",
+        "action": "order.finalized",
+        "message": "Đơn ORD-20260409-1002 đã hoàn tất thanh toán",
+        "createdAt": "2026-04-09T11:30:00Z"
+      }
+    ]
+  },
+  "products": [],
+  "fulfillmentPoints": [],
+  "orders": [
+    {
+      "customerName": "Khách demo logistics",
+      "customerArea": "Quận 10",
+      "channel": "Shopee",
+      "fulfillmentMode": "Giao tận nơi",
+      "paymentMethod": "COD",
+      "notes": "Đơn mô phỏng để kiểm tra logic phân bổ",
+      "items": [
+        {
+          "productId": "p1",
+          "quantity": 1
+        }
+      ],
+      "id": 1
+    },
+    {
+      "customerName": "Khách demo logistics",
+      "customerArea": "Quận 10",
+      "channel": "Website",
+      "fulfillmentMode": "Giao tận nơi",
+      "paymentMethod": "Đã thanh toán",
+      "notes": "Demo đơn ưu tiên tốc độ giao hàng",
+      "items": [
+        {
+          "productId": "p1",
+          "quantity": 1
+        }
+      ],
+      "id": 2
+    }
+  ],
+  "logs": [],
+  "seed": {},
+  "reset": {}
+}

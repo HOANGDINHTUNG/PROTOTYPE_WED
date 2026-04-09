@@ -1,0 +1,8 @@
+{
+  "/api/simulation/snapshot": "/simulation",
+  "/api/orders": "/orders",
+  "/api/orders/:id/status": "/orders/:id",
+  "/api/simulation/seed": "/seed",
+  "/api/simulation/reset": "/reset",
+  "/api/*": "/$1"
+}
