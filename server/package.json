@@ -1,16 +1,13 @@
 {
-  "name": "server",
+  "name": "prototype-wed-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "start": "json-server --watch db.json --routes routes.json --port 8080",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "json-server --watch db.json --routes routes.json --port 3000",
+    "start": "node ./node_modules/json-server/lib/cli/bin.js --watch db.json --host 0.0.0.0 --port $PORT"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "json-server": "^0.17.4"
-  }
+  },
+  "engines": { "node": ">=18" }
 }
