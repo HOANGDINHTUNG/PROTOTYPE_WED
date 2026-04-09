@@ -1,7 +1,10 @@
 import axios from "axios";
 
 export const httpClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8080/api",
+  // Sử dụng /api prefix để khớp với routes.json trên server
+  baseURL:
+    import.meta.env.VITE_API_BASE_URL ||
+    "https://prototype-wed.onrender.com/api",
   timeout: 15000,
   headers: {
     "Content-Type": "application/json",
