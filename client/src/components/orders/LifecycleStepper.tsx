@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   CheckCircle2,
   Clock,
@@ -17,6 +18,7 @@ interface LifecycleStepperProps {
 
 export const LifecycleStepper = ({ currentStatus }: LifecycleStepperProps) => {
   const { t } = useTranslation();
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const statusSteps: Array<{
     status: OrderStatus;
@@ -80,10 +82,11 @@ export const LifecycleStepper = ({ currentStatus }: LifecycleStepperProps) => {
     currentStatus === "Giao thất bại" || currentStatus === "Hoàn hàng";
 
   return (
-    <div className="flex items-center w-full max-w-sm gap-0 group/stepper">
+    <div className="flex items-center w-full max-w-sm gap-0">
       {statusSteps.map((step, index) => {
         const isCompleted = index < currentIndex;
         const isCurrent = index === currentIndex;
+        const isHovered = hoveredIndex === index;
         const Icon = step.icon;
 
         return (
@@ -91,7 +94,11 @@ export const LifecycleStepper = ({ currentStatus }: LifecycleStepperProps) => {
             key={step.status}
             className="flex items-center flex-1 last:flex-none"
           >
-            <div className="relative group">
+            <div
+              className="relative"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
               <div
                 className={`
                 flex items-center justify-center w-7 h-7 rounded-full border transition-all duration-500
@@ -113,8 +120,14 @@ export const LifecycleStepper = ({ currentStatus }: LifecycleStepperProps) => {
                 )}
               </div>
 
-              {/* Enhanced Tooltip */}
-              <div className="absolute -top-9 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-slate-900 dark:bg-slate-800 text-[10px] font-black text-white rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap border border-white/10 shadow-xl scale-90 group-hover:scale-100 translate-y-2 group-hover:translate-y-0">
+              {/* Tooltip — only shown for the currently hovered step */}
+              <div
+                className={`absolute -top-9 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-slate-900 dark:bg-slate-800 text-[10px] font-black text-white rounded-lg pointer-events-none whitespace-nowrap border border-white/10 shadow-xl z-50 transition-all duration-200 ${
+                  isHovered
+                    ? "opacity-100 scale-100 translate-y-0"
+                    : "opacity-0 scale-90 translate-y-2"
+                }`}
+              >
                 {step.label}
               </div>
             </div>
