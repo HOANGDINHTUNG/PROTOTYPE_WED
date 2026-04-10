@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { CandidateTable } from "../components/decision/CandidateTable";
 import { DecisionPanel } from "../components/decision/DecisionPanel";
 import { LogicExplainer } from "../components/decision/LogicExplainer";
@@ -20,6 +21,7 @@ import type { AllocationDecision, CreateOrderInput } from "../types";
 import { ShoppingBag, CheckCircle } from "lucide-react";
 
 export const CreateOrderPage = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const products = useAppSelector(selectProducts);
   const points = useAppSelector(selectFulfillmentPoints);
@@ -38,7 +40,7 @@ export const CreateOrderPage = () => {
       dispatch(
         addNotification({
           type: "success",
-          message: "Đơn hàng đã được tạo thành công!",
+          message: t("create_order.msg_success"),
         }),
       );
       setDraft(null);
@@ -46,7 +48,7 @@ export const CreateOrderPage = () => {
       dispatch(
         addNotification({
           type: "error",
-          message: "Lỗi khi tạo đơn hàng: " + err,
+          message: t("create_order.msg_error") + err,
         }),
       );
     }
@@ -55,9 +57,9 @@ export const CreateOrderPage = () => {
   return (
     <div className="space-y-8 pb-20">
       <SectionHeading
-        eyebrow="Tạo đơn hàng mô phỏng"
-        title="Nhập đơn giả lập và xem hệ thống tự quyết định điểm xử lý"
-        description="Trang này bám sát prototype: người dùng chọn kênh bán, sản phẩm, số lượng, khu vực khách và hệ thống sẽ phân bổ theo logic đa điểm."
+        eyebrow={t("create_order.eyebrow")}
+        title={t("create_order.title")}
+        description={t("create_order.desc")}
       />
 
       <div className="grid gap-8 xl:grid-cols-[1fr_0.7fr]">
@@ -73,11 +75,10 @@ export const CreateOrderPage = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-black text-white tracking-tight">
-                      Xác nhận phân bổ
+                      {t("create_order.confirm_title")}
                     </h3>
                     <p className="text-xs text-slate-400">
-                      Xem trước kết quả từ Decision Engine trước khi đẩy vào hệ
-                      thống
+                      {t("create_order.confirm_desc")}
                     </p>
                   </div>
                 </div>
@@ -86,7 +87,9 @@ export const CreateOrderPage = () => {
                   disabled={creatingOrder}
                   className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold"
                 >
-                  {creatingOrder ? "Đang xử lý..." : "Xác nhận & Tạo đơn"}
+                  {creatingOrder
+                    ? t("common.processing")
+                    : t("create_order.confirm_btn")}
                 </Button>
               </div>
 
@@ -104,17 +107,14 @@ export const CreateOrderPage = () => {
             <div className="flex items-center gap-2 mb-4">
               <CheckCircle size={16} className="text-indigo-400" />
               <h4 className="text-sm font-bold text-indigo-300 uppercase tracking-widest">
-                Ghi chú vận hành
+                {t("create_order.note_title")}
               </h4>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed mb-4">
-              Hệ thống sử dụng giải thuật <strong>Dynamic Fulfillment</strong>{" "}
-              để tự động chọn kho có chi phí thấp nhất (dựa trên khoảng cách) và
-              tải vận hành ổn định nhất.
+              {t("create_order.note_desc")}
             </p>
             <div className="p-3 rounded-lg bg-slate-900/50 border border-white/5 italic text-[10px] text-slate-500">
-              * Tồn kho sẽ được giữ (Reserve) ngay khi đơn hàng được tạo thành
-              công.
+              {t("create_order.note_reserve")}
             </div>
           </div>
         </div>

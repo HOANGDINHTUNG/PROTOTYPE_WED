@@ -69,11 +69,40 @@ export const simulationService = {
     return response.data;
   },
 
+  async createFullOrder(order: Order): Promise<Order> {
+    try {
+      const response = await httpClient.post<Order>("/orders", order);
+      return response.data;
+    } catch (error: unknown) {
+      if (isDemoFallback(error)) {
+        return order;
+      }
+      throw error;
+    }
+  },
+
   async updateOrderStatus(payload: UpdateOrderStatusInput): Promise<Order> {
     const response = await httpClient.patch<Order>(
       `/orders/${payload.orderId}/status`,
       payload,
     );
     return response.data;
+  },
+
+  async updateSnapshot(
+    snapshot: SimulationSnapshot,
+  ): Promise<SimulationSnapshot> {
+    try {
+      const response = await httpClient.put<SimulationSnapshot>(
+        "/simulation",
+        snapshot,
+      );
+      return response.data;
+    } catch (error: unknown) {
+      if (isDemoFallback(error)) {
+        return snapshot;
+      }
+      throw error;
+    }
   },
 };

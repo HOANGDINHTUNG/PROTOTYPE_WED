@@ -1,11 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { simulationService } from "../../services/simulationService";
 import type { RootState } from "../../app/store";
+import i18n from "../../i18n";
+import { buildAllocationDecision } from "../../utils/decisionEngine";
 import type {
   CreateOrderInput,
   CustomerArea,
+  Order,
+  OrderStatus,
   SalesChannel,
   SimulationSnapshot,
+  SystemLog,
 } from "../../types";
 
 interface SimulationState {
@@ -43,9 +48,113 @@ export const resetSimulationData = createAsyncThunk(
 
 export const createOrder = createAsyncThunk(
   "simulation/createOrder",
-  async (payload: CreateOrderInput, { dispatch }) => {
-    const result = await simulationService.createOrder(payload);
-    await dispatch(fetchSimulationSnapshot());
+  async (payload: CreateOrderInput, { dispatch, getState }) => {
+    const state = getState() as RootState;
+    const snapshot = state.simulation.snapshot;
+    if (!snapshot) throw new Error("Snapshot not found");
+
+    // 1. Calculate Allocation Decision
+    const decision = buildAllocationDecision(
+      payload,
+      snapshot.fulfillmentPoints,
+      snapshot.products,
+    );
+
+    const now = new Date().toISOString();
+    const orderId = `o${Date.now()}`;
+    const orderCode = `ORD-${new Date().toISOString().slice(0, 10).replace(/-/g, "")}-${Math.floor(Math.random() * 10000)}`;
+
+    const newOrder: Order = {
+      id: orderId,
+      code: orderCode,
+      customerName: payload.customerName,
+      customerArea: payload.customerArea,
+      channel: payload.channel,
+      fulfillmentMode: payload.fulfillmentMode,
+      paymentMethod: payload.paymentMethod,
+      status: "Đã tiếp nhận" as OrderStatus,
+      fulfilledByPointId: decision.selectedPointId,
+      fulfilledByPointName: decision.selectedPointName,
+      shippingDistanceKm:
+        decision.candidates.find((c) => c.pointId === decision.selectedPointId)
+          ?.distanceKm ?? null,
+      totalAmount: payload.items.reduce((sum, item) => {
+        const product = snapshot.products.find((p) => p.id === item.productId);
+        return sum + (product?.price ?? 0) * item.quantity;
+      }, 0),
+      items: payload.items.map((item) => {
+        const product = snapshot.products.find((p) => p.id === item.productId);
+        return {
+          productId: item.productId,
+          quantity: item.quantity,
+          unitPrice: product?.price ?? 0,
+        };
+      }),
+      notes: payload.notes,
+      createdAt: now,
+      updatedAt: now,
+      timeline: [
+        {
+          status: "Đã tiếp nhận" as OrderStatus,
+          timestamp: now,
+          note: `Đơn hàng được tiếp nhận từ kênh ${payload.channel}`,
+        },
+      ],
+      allocation: decision,
+    };
+
+    // 2. Clone and Update Snapshot in memory
+    const updatedSnapshot: SimulationSnapshot = JSON.parse(
+      JSON.stringify(snapshot),
+    );
+
+    // Update Fulfillment Points (Inventory & Active Orders)
+    if (decision.selectedPointId) {
+      const point = updatedSnapshot.fulfillmentPoints.find(
+        (p) => p.id === decision.selectedPointId,
+      );
+      if (point) {
+        point.activeOrders += 1;
+        payload.items.forEach((orderItem) => {
+          const invItem = point.inventory.find(
+            (i) => i.productId === orderItem.productId,
+          );
+          if (invItem) {
+            invItem.availableQuantity -= orderItem.quantity;
+            invItem.reservedQuantity += orderItem.quantity;
+            invItem.updatedAt = now;
+          }
+        });
+      }
+    }
+
+    // Add Order to the beginning of the list
+    updatedSnapshot.orders.unshift(newOrder);
+
+    // Update Dashboard Counts
+    updatedSnapshot.dashboard.totalOrders += 1;
+    updatedSnapshot.dashboard.processingOrders += 1;
+
+    // Add System Log
+    const newLog: SystemLog = {
+      id: `l${Date.now()}`,
+      level: decision.selectedPointId ? "success" : "warning",
+      action: "order.created",
+      message: decision.selectedPointId
+        ? `Tạo đơn ${orderCode} và phân bổ cho ${decision.selectedPointName}`
+        : `Tạo đơn ${orderCode} nhưng không tìm thấy điểm xử lý đủ tồn`,
+      createdAt: now,
+      context: {
+        orderId,
+        orderCode,
+        pointId: decision.selectedPointId,
+      },
+    };
+    updatedSnapshot.logs.unshift(newLog);
+
+    // 3. Save the full snapshot and re-fetch to ensure sync with live API
+    await simulationService.updateSnapshot(updatedSnapshot);
+    const result = await dispatch(fetchSimulationSnapshot());
     return result;
   },
 );
@@ -75,12 +184,12 @@ export const simulateOrders = createAsyncThunk(
       const randomArea = areas[Math.floor(Math.random() * areas.length)];
 
       const payload: CreateOrderInput = {
-        customerName: `Khách Random ${i + 1}`,
+        customerName: `${i18n.t("create_order.form.default_name_priority")} ${i + 1}`,
         customerArea: randomArea as CustomerArea,
         channel: randomChannel as SalesChannel,
         fulfillmentMode: "Giao tận nơi",
         paymentMethod: "COD",
-        notes: "Đơn hàng được tạo tự động bởi Stress Test Mode",
+        notes: i18n.t("create_order.form.default_notes"),
         items: [
           {
             productId: randomProduct.id,
@@ -89,12 +198,10 @@ export const simulateOrders = createAsyncThunk(
         ],
       };
 
-      await simulationService.createOrder(payload);
+      await dispatch(createOrder(payload));
       // Add small delay between orders
       await new Promise((resolve) => setTimeout(resolve, 800));
     }
-
-    await dispatch(fetchSimulationSnapshot());
   },
 );
 
@@ -114,7 +221,7 @@ const simulationSlice = createSlice({
       })
       .addCase(fetchSimulationSnapshot.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message ?? "Không thể tải dữ liệu hệ thống.";
+        state.error = action.error.message ?? i18n.t("common.error");
       })
       .addCase(seedSimulationData.pending, (state) => {
         state.seeding = true;
@@ -125,7 +232,7 @@ const simulationSlice = createSlice({
       })
       .addCase(seedSimulationData.rejected, (state, action) => {
         state.seeding = false;
-        state.error = action.error.message ?? "Không thể nạp dữ liệu mẫu.";
+        state.error = action.error.message ?? i18n.t("common.error");
       })
       .addCase(resetSimulationData.pending, (state) => {
         state.resetting = true;
@@ -136,7 +243,7 @@ const simulationSlice = createSlice({
       })
       .addCase(resetSimulationData.rejected, (state, action) => {
         state.resetting = false;
-        state.error = action.error.message ?? "Không thể reset mô phỏng.";
+        state.error = action.error.message ?? i18n.t("common.error");
       })
       .addCase(createOrder.pending, (state) => {
         state.creatingOrder = true;
@@ -146,7 +253,7 @@ const simulationSlice = createSlice({
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.creatingOrder = false;
-        state.error = action.error.message ?? "Lỗi khi tạo đơn hàng.";
+        state.error = action.error.message ?? i18n.t("create_order.msg_error");
       });
   },
 });

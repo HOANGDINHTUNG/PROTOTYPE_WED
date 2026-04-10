@@ -33,30 +33,32 @@ export const LiveLogFeed = () => {
   };
 
   return (
-    <div className="glass-panel rounded-2xl overflow-hidden flex flex-col h-[380px]">
-      <div className="px-5 py-4 bg-white/5 border-b border-white/5 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Terminal className="w-4 h-4 text-cyan-400" />
-          <h3 className="font-bold text-sm text-white tracking-tight uppercase">
-            Nhật ký hệ thống
+    <div className="glass-panel rounded-3xl overflow-hidden flex flex-col h-[420px] shadow-lg border-0">
+      <div className="px-6 py-5 bg-slate-50 dark:bg-white/5 border-b border-slate-200 dark:border-white/5 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <Terminal className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
+          <h3 className="font-black text-xs text-slate-900 dark:text-white tracking-[0.2em] uppercase">
+            Hệ thống nhật ký
           </h3>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-            Live
+          <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+            Live Feed
           </span>
         </div>
       </div>
 
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto p-4 space-y-3 font-mono text-[11px] scrollbar-thin scrollbar-thumb-white/10"
+        className="flex-1 overflow-y-auto p-6 space-y-4 font-mono text-[11px] custom-scrollbar bg-white/40 dark:bg-transparent"
       >
         {logs.length === 0 ? (
-          <div className="h-full flex flex-col items-center justify-center text-slate-600 gap-2 opacity-50">
-            <Activity className="w-6 h-6" />
-            <p>Hệ thống đang chờ lệnh...</p>
+          <div className="h-full flex flex-col items-center justify-center text-slate-400 dark:text-slate-600 gap-3 opacity-60">
+            <Activity className="w-8 h-8 animate-pulse" />
+            <p className="font-bold uppercase tracking-widest">
+              Đang khởi tạo luồng dữ liệu...
+            </p>
           </div>
         ) : (
           [...logs]
@@ -66,20 +68,20 @@ export const LiveLogFeed = () => {
             .map((log) => (
               <div
                 key={log.id}
-                className="flex gap-3 group animate-in fade-in slide-in-from-left-2 duration-300"
+                className="flex gap-4 group animate-in fade-in slide-in-from-left-4 duration-500 hover:bg-slate-50 dark:hover:bg-white/5 p-2 rounded-xl transition-all"
               >
-                <span className="text-slate-600 shrink-0 whitespace-nowrap">
+                <span className="text-slate-400 dark:text-slate-600 shrink-0 whitespace-nowrap font-bold">
                   {new Date(log.createdAt).toLocaleTimeString([], {
                     hour12: false,
                   })}
                 </span>
-                <div className="mt-0.5 shrink-0">{getIcon(log.level)}</div>
+                <div className="mt-1 shrink-0">{getIcon(log.level)}</div>
                 <div className="flex-1">
-                  <span className="text-slate-200 leading-relaxed">
+                  <span className="text-slate-700 dark:text-slate-200 leading-relaxed font-bold tracking-tight">
                     {log.message}
                   </span>
                   {log.action && (
-                    <span className="ml-2 px-1.5 py-0.5 rounded bg-white/5 text-slate-500 border border-white/5">
+                    <span className="ml-3 px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-500 border border-slate-200 dark:border-white/10 text-[9px] font-black uppercase">
                       {log.action}
                     </span>
                   )}
@@ -89,9 +91,11 @@ export const LiveLogFeed = () => {
         )}
       </div>
 
-      <div className="px-4 py-2 border-t border-white/5 bg-slate-900/30 flex justify-between items-center text-[10px] text-slate-500 font-bold uppercase tracking-widest">
-        <span>Channel: simulation:all</span>
-        <span className="text-cyan-500/50">Listening...</span>
+      <div className="px-6 py-3 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-900/30 flex justify-between items-center text-[10px] text-slate-400 dark:text-slate-500 font-black uppercase tracking-[0.2em]">
+        <span>Simulation: Active</span>
+        <span className="text-cyan-600 dark:text-cyan-500 opacity-80 animate-pulse">
+          ● Listening...
+        </span>
       </div>
     </div>
   );

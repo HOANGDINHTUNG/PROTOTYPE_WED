@@ -1,0 +1,78 @@
+export const translations = {
+  vi: {
+    dashboard: "Tổng quan",
+    createOrder: "Tạo đơn hàng",
+    inventory: "Tồn kho",
+    decisionEngine: "Bộ máy quyết định",
+    logs: "Nhật ký hệ thống",
+    theme: "Chế độ",
+    language: "Ngôn ngữ",
+    headerTitle: "Hệ thống Quản lý Vận hành Đa kênh",
+    simulationTitle: "Mô phỏng điều phối đơn hàng đa kênh tập trung",
+    demoMode: "Chế độ Demo",
+    formulaTitle: "Cách hệ thống chấm điểm (Scoring)",
+    formulaInfo:
+      "Hệ thống tự động tính điểm cho từng kho/cửa hàng. Điểm càng thấp thì mức độ ưu tiên càng cao.",
+    formulaCaption:
+      "* Giải thích: Điểm càng thấp độ ưu tiên càng cao. Khoảng cách gần và tải thấp được ưu tiên hàng đầu.",
+    distance: "Khoảng cách",
+    capacity: "Tải xử lý",
+    bopis: "Ưu tiên BOPIS",
+    hardConstraint: "Ràng buộc cứng",
+    stockPenalty:
+      "Nếu điểm xử lý không đủ tồn kho, hệ thống sẽ cộng +100 điểm phạt (Loại bỏ).",
+    orders: {
+      title: "Đơn hàng",
+      stepper: {
+        Received: "Tiếp nhận",
+        Verified: "Xác minh",
+        StockCheck: "Kiểm kho",
+        Allocated: "Phân bổ",
+        Paid: "Thanh toán",
+        Packed: "Đóng gói",
+        Ready: "Sẵn sàng",
+        Shipping: "Đang giao",
+        Delivered: "Thành công",
+        Reconciled: "Đối soát",
+      },
+    },
+  },
+  en: {
+    dashboard: "Dashboard",
+    createOrder: "Create Order",
+    inventory: "Inventory",
+    decisionEngine: "Decision Engine",
+    logs: "System Logs",
+    theme: "Theme",
+    language: "Language",
+    headerTitle: "Omnichannel Operations System",
+    simulationTitle: "Centralized omnichannel order fulfillment simulation",
+    demoMode: "Demo Mode",
+    formulaTitle: "System Scoring Logic",
+    formulaInfo:
+      "The system automatically calculates scores for each warehouse/store. Lower scores indicate higher priority.",
+    formulaCaption:
+      "* Note: Lower score means higher priority. Proximity and low processing load are prioritized.",
+    distance: "Distance",
+    capacity: "Processing Load",
+    bopis: "BOPIS Priority",
+    hardConstraint: "Hard Constraint",
+    stockPenalty:
+      "If the fulfillment point lacks stock, a +100 penalty points will be added (Excluded).",
+    orders: {
+      title: "Orders",
+      stepper: {
+        Received: "Received",
+        Verified: "Verified",
+        StockCheck: "Stock Check",
+        Allocated: "Allocated",
+        Paid: "Paid",
+        Packed: "Packed",
+        Ready: "Ready",
+        Shipping: "Shipping",
+        Delivered: "Delivered",
+        Reconciled: "Reconciled",
+      },
+    },
+  },
+};

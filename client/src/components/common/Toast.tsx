@@ -24,27 +24,27 @@ const toastStyles: Record<
 > = {
   success: {
     icon: CheckCircle2,
-    color: "text-emerald-400",
-    border: "border-emerald-500/30",
-    bg: "bg-emerald-500/10",
+    color: "text-emerald-600 dark:text-emerald-400",
+    border: "border-emerald-200 dark:border-emerald-500/30",
+    bg: "bg-white dark:bg-emerald-500/10",
   },
   error: {
     icon: AlertCircle,
-    color: "text-rose-400",
-    border: "border-rose-500/30",
-    bg: "bg-rose-500/10",
+    color: "text-rose-600 dark:text-rose-400",
+    border: "border-rose-200 dark:border-rose-500/30",
+    bg: "bg-white dark:bg-rose-500/10",
   },
   info: {
     icon: Info,
-    color: "text-cyan-400",
-    border: "border-cyan-500/30",
-    bg: "bg-cyan-500/10",
+    color: "text-cyan-600 dark:text-cyan-400",
+    border: "border-cyan-200 dark:border-cyan-500/30",
+    bg: "bg-white dark:bg-cyan-500/10",
   },
   warning: {
     icon: AlertTriangle,
-    color: "text-amber-400",
-    border: "border-amber-500/30",
-    bg: "bg-amber-500/10",
+    color: "text-amber-600 dark:text-amber-400",
+    border: "border-amber-200 dark:border-amber-500/30",
+    bg: "bg-white dark:bg-amber-500/10",
   },
 };
 
@@ -63,17 +63,19 @@ export const Toast = ({ id, type, message, duration = 5000 }: ToastProps) => {
   return (
     <div
       className={`
-      flex items-center gap-3 px-4 py-3 rounded-2xl border backdrop-blur-xl shadow-2xl animate-fade-in-up
+      flex items-center gap-4 px-6 py-4 rounded-[24px] border backdrop-blur-2xl shadow-2xl animate-fade-in-up
       ${bg} ${border} ${color}
     `}
     >
-      <Icon className="w-5 h-5 flex-shrink-0" />
-      <p className="text-sm font-bold tracking-tight text-white">{message}</p>
+      <Icon className="w-6 h-6 flex-shrink-0" />
+      <p className="text-sm font-black tracking-tight text-slate-900 dark:text-white">
+        {message}
+      </p>
       <button
         onClick={() => dispatch(removeNotification(id))}
-        className="ml-2 p-1 rounded-lg hover:bg-white/10 transition-colors"
+        className="ml-3 p-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-colors text-slate-400 hover:text-slate-900 dark:hover:text-white"
       >
-        <X className="w-4 h-4 opacity-50 hover:opacity-100" />
+        <X className="w-4 h-4" />
       </button>
     </div>
   );

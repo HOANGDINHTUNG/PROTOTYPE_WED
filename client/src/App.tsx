@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
-import { AppRoutes } from './routes/AppRoutes';
-import { fetchSimulationSnapshot } from './features/simulation/simulationSlice';
-import { useAppDispatch } from './hooks/redux';
+import { useEffect } from "react";
+import { AppRoutes } from "./routes/AppRoutes";
+import { fetchSimulationSnapshot } from "./features/simulation/simulationSlice";
+import { useAppDispatch } from "./hooks/redux";
+
+import { UIProvider } from "./context/UIContext";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -10,7 +12,11 @@ const App = () => {
     void dispatch(fetchSimulationSnapshot());
   }, [dispatch]);
 
-  return <AppRoutes />;
+  return (
+    <UIProvider>
+      <AppRoutes />
+    </UIProvider>
+  );
 };
 
 export default App;

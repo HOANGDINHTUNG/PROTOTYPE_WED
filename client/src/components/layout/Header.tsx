@@ -1,40 +1,61 @@
-import { Activity, Sparkles } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { resetSimulationData, seedSimulationData, selectSimulationActions } from '../../features/simulation/simulationSlice';
-import { Button } from '../common/Button';
+import { Activity, Sparkles, Moon, Sun } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useUI } from "../../context/UIContext";
+import { Button } from "../common/Button";
 
 export const Header = () => {
-  const dispatch = useAppDispatch();
-  const { error, resetting, seeding } = useAppSelector(selectSimulationActions);
+  const { theme, toggleTheme, language, setLanguage } = useUI();
+  const { t } = useTranslation();
 
   return (
-    <header className="rounded-[32px] border border-white/10 bg-slate-900/60 px-5 py-4 backdrop-blur-xl">
+    <header className="glass-panel rounded-[28px] px-7 py-5">
       <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-300 ring-1 ring-cyan-400/20">
-            <Activity size={14} /> Live Simulation for Logistics Training
+        <div className="space-y-1.5">
+          <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 dark:bg-indigo-500/10 px-3.5 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-500/15">
+            <Activity size={11} className="animate-pulse" /> {t("header.subtitle")}
           </div>
-          <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-white">HANOLA Omnichannel Fulfillment Dashboard</h1>
-            <p className="mt-1 text-sm text-slate-300">
-              Mô phỏng điều phối đơn hàng đa kênh tập trung, dễ demo với khách hàng, giảng viên và đội vận hành.
-            </p>
-          </div>
+          <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
+            {t("header.title")}
+          </h1>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <Button variant="secondary" onClick={() => void dispatch(seedSimulationData())} disabled={seeding}>
-            {seeding ? 'Đang nạp mẫu...' : 'Nạp dữ liệu mẫu'}
-          </Button>
-          <Button variant="ghost" onClick={() => void dispatch(resetSimulationData())} disabled={resetting}>
-            {resetting ? 'Đang reset...' : 'Reset demo'}
-          </Button>
-          <div className="inline-flex items-center gap-2 rounded-2xl bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-300 ring-1 ring-emerald-400/25">
-            <Sparkles size={16} /> Demo Mode
+          {/* Language Toggle */}
+          <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200/50 dark:border-white/5">
+            <Button
+              variant="ghost"
+              size="sm"
+              className={`rounded-lg px-4 py-1.5 text-xs font-black transition-all ${language === "vi" ? "bg-white dark:bg-indigo-600 text-indigo-700 dark:text-white shadow-sm border border-indigo-100 dark:border-0" : "text-slate-400 hover:text-slate-700 dark:hover:text-white"}`}
+              onClick={() => setLanguage("vi")}
+            >
+              VN
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className={`rounded-lg px-4 py-1.5 text-xs font-black transition-all ${language === "en" ? "bg-white dark:bg-indigo-600 text-indigo-700 dark:text-white shadow-sm border border-indigo-100 dark:border-0" : "text-slate-400 hover:text-slate-700 dark:hover:text-white"}`}
+              onClick={() => setLanguage("en")}
+            >
+              EN
+            </Button>
+          </div>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            title={t("common.theme")}
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm hover:border-indigo-200 hover:text-indigo-600 hover:shadow-md transition-all duration-300 dark:border-indigo-500/15 dark:bg-slate-800/80 dark:text-indigo-400 dark:hover:border-indigo-500/30 dark:hover:bg-slate-700"
+          >
+            {theme === "light" ? <Moon size={17} /> : <Sun size={17} />}
+          </button>
+
+          {/* Demo Badge */}
+          <div className="inline-flex items-center gap-2 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 px-5 py-2.5 text-sm font-bold text-emerald-700 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-500/15 shadow-sm">
+            <Sparkles size={15} className="text-emerald-500" />{" "}
+            {t("common.demo_mode")}
           </div>
         </div>
       </div>
-      {error ? <p className="mt-3 text-sm text-rose-300">{error}</p> : null}
     </header>
   );
 };

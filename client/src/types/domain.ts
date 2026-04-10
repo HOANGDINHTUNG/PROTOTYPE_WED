@@ -1,29 +1,38 @@
-export type SalesChannel = 'Website' | 'Shopee' | 'TikTok Shop' | 'Facebook' | 'Offline';
+export type SalesChannel =
+  | "Website"
+  | "Shopee"
+  | "TikTok Shop"
+  | "Facebook"
+  | "Offline";
 
 export type CustomerArea =
-  | 'Quận 1'
-  | 'Quận 3'
-  | 'Quận 5'
-  | 'Quận 7'
-  | 'Quận 10'
-  | 'Bình Thạnh'
-  | 'Phú Nhuận'
-  | 'Tân Bình'
-  | 'Thủ Đức';
+  | "Quận 1"
+  | "Quận 3"
+  | "Quận 5"
+  | "Quận 7"
+  | "Quận 10"
+  | "Bình Thạnh"
+  | "Phú Nhuận"
+  | "Tân Bình"
+  | "Thủ Đức";
 
-export type FulfillmentMode = 'Giao tận nơi' | 'Nhận tại cửa hàng';
-export type PaymentMethod = 'COD' | 'Đã thanh toán';
-export type FulfillmentPointType = 'Warehouse' | 'Store';
+export type FulfillmentMode = "Giao tận nơi" | "Nhận tại cửa hàng";
+export type PaymentMethod = "COD" | "Đã thanh toán" | "Chuyển khoản";
+export type FulfillmentPointType = "Warehouse" | "Store";
 
 export type OrderStatus =
-  | 'Đã tiếp nhận'
-  | 'Đang phân bổ'
-  | 'Đang xử lý'
-  | 'Đã đóng gói'
-  | 'Đang giao'
-  | 'Giao thành công'
-  | 'Giao thất bại'
-  | 'Hoàn hàng';
+  | "Đã tiếp nhận"
+  | "Đã xác minh"
+  | "Kiểm tra tồn kho"
+  | "Đã phân bổ"
+  | "Đã thanh toán"
+  | "Đã đóng gói"
+  | "Sẵn sàng giao"
+  | "Đang giao"
+  | "Giao thành công"
+  | "Đã đối soát"
+  | "Giao thất bại"
+  | "Hoàn hàng";
 
 export interface Product {
   id: string;
@@ -113,7 +122,7 @@ export interface Order {
 
 export interface SystemLog {
   id: string;
-  level: 'info' | 'success' | 'warning' | 'error';
+  level: "info" | "success" | "warning" | "error";
   action: string;
   message: string;
   createdAt: string;

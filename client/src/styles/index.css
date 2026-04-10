@@ -1,27 +1,65 @@
 @import "tailwindcss";
 
+/* ════════════════════════════════════════════
+   CAPYBARA — Luxury Premium Design System
+   ════════════════════════════════════════════ */
+
 :root {
-  color-scheme: dark;
+  color-scheme: light dark;
   font-family:
     "Inter",
     system-ui,
     -apple-system,
     sans-serif;
-  background: #020617;
 }
 
 * {
   box-sizing: border-box;
 }
 
+/* ── Light Mode Body ──────────────────────── */
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top right, #1e1b4b, #020617 60%),
-    radial-gradient(circle at bottom left, #083344, #020617 60%);
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(199, 210, 254, 0.35) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 100% 5%,
+      rgba(165, 243, 252, 0.2) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 80% 100%,
+      rgba(221, 214, 254, 0.25) 0%,
+      transparent 50%
+    ),
+    #f1f5f9;
   background-attachment: fixed;
+  color: #0f172a;
+  transition:
+    background-color 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Dark Mode Body ───────────────────────── */
+.dark body {
+  background:
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(30, 27, 75, 0.5) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 100% 100%,
+      rgba(12, 74, 110, 0.3) 0%,
+      transparent 45%
+    ),
+    #080c14;
   color: #f8fafc;
 }
 
@@ -29,98 +67,182 @@ body {
   min-height: 100vh;
 }
 
-/* Premium UI Utilities */
+/* ════════════════════════════════════════════
+   GLASS PANEL — Main surface (Sidebar, Header)
+   ════════════════════════════════════════════ */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 1px 0px rgba(255, 255, 255, 0.8) inset,
+    0 12px 40px -8px rgba(100, 116, 139, 0.12),
+    0 4px 8px -2px rgba(100, 116, 139, 0.06);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.dark .glass-panel {
+  background: rgba(10, 14, 28, 0.97);
+  border-color: rgba(99, 102, 241, 0.12);
+  box-shadow:
+    0 1px 0px rgba(255, 255, 255, 0.04) inset,
+    0 30px 60px -15px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(99, 102, 241, 0.04);
+}
+
+/* ════════════════════════════════════════════
+   GLASS CARD — Content cards
+   ════════════════════════════════════════════ */
 .glass-card {
-  background: rgba(30, 41, 59, 0.45);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 8px 24px -4px rgba(100, 116, 139, 0.1),
+    0 2px 8px -1px rgba(100, 116, 139, 0.06);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .glass-card {
+  background: rgba(14, 21, 40, 0.96);
+  border-color: rgba(99, 102, 241, 0.1);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.03) inset,
+    0 16px 40px -8px rgba(0, 0, 0, 0.6);
 }
 
 .glass-card:hover {
-  background: rgba(30, 41, 59, 0.6);
-  border-color: rgba(34, 211, 238, 0.2);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(99, 102, 241, 0.35);
+  transform: translateY(-4px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 24px 40px -8px rgba(99, 102, 241, 0.15),
+    0 8px 16px -4px rgba(99, 102, 241, 0.1);
 }
 
+.dark .glass-card:hover {
+  background: rgba(25, 35, 60, 0.92);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 24px 48px -12px rgba(99, 102, 241, 0.25),
+    0 0 60px rgba(99, 102, 241, 0.08);
+}
+
+/* ════════════════════════════════════════════
+   CSS VARIABLES
+   ════════════════════════════════════════════ */
+:root {
+  --shadow-premium:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 8px 24px -4px rgba(100, 116, 139, 0.1),
+    0 2px 8px -1px rgba(100, 116, 139, 0.04);
+
+  --accent-primary: #6366f1;
+  --accent-secondary: #06b6d4;
+  --gold: #f59e0b;
+}
+
+/* ════════════════════════════════════════════
+   INPUTS
+   ════════════════════════════════════════════ */
+.input-premium {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(203, 213, 225, 0.7);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.875rem 1.25rem;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.dark .input-premium {
+  border-color: rgba(99, 102, 241, 0.15);
+  background: rgba(18, 26, 45, 0.8);
+  color: #f8fafc;
+  box-shadow: none;
+}
+
+.input-premium:focus {
+  border-color: #6366f1;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 4px rgba(99, 102, 241, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+.dark .input-premium:focus {
+  background: rgba(25, 35, 60, 0.9);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+/* ════════════════════════════════════════════
+   TEXT GRADIENT UTILITY
+   ════════════════════════════════════════════ */
 .text-gradient {
-  background: linear-gradient(to right, #22d3ee, #818cf8);
+  background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.input-dark {
-  width: 100%;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(15, 23, 42, 0.8);
-  padding: 0.75rem 1rem;
-  color: white;
-  outline: none;
-  transition: all 0.2s ease;
+.text-gradient-gold {
+  background: linear-gradient(125deg, #f59e0b 0%, #fcd34d 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.input-dark:focus {
-  border-color: #22d3ee;
-  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.2);
-}
-
-.shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
+/* ════════════════════════════════════════════
+   ANIMATIONS
+   ════════════════════════════════════════════ */
 .shimmer::after {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  inset: 0;
   background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(255, 255, 255, 0.03),
-    transparent
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 75%
   );
-  transform: rotate(45deg);
-  animation: shimmer 3s infinite;
+  animation: shimmer 2.5s infinite;
+  pointer-events: none;
 }
 
 @keyframes shimmer {
   0% {
-    transform: translate(-30%, -30%) rotate(45deg);
+    transform: translateX(-100%);
   }
   100% {
-    transform: translate(30%, 30%) rotate(45deg);
+    transform: translateX(100%);
   }
 }
 
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 5s ease-in-out infinite;
 }
 
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -129,10 +251,29 @@ body {
 }
 
 .animate-fade-in-up {
-  animation: fade-in-up 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: fade-in-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-/* Custom Scrollbar */
+/* Stagger helpers */
+.stagger-1 {
+  animation-delay: 0.08s;
+}
+.stagger-2 {
+  animation-delay: 0.16s;
+}
+.stagger-3 {
+  animation-delay: 0.24s;
+}
+.stagger-4 {
+  animation-delay: 0.32s;
+}
+.stagger-5 {
+  animation-delay: 0.4s;
+}
+
+/* ════════════════════════════════════════════
+   SCROLLBAR
+   ════════════════════════════════════════════ */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -143,26 +284,14 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 99px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.stagger-1 {
-  animation-delay: 0.1s;
-}
-.stagger-2 {
-  animation-delay: 0.2s;
-}
-.stagger-3 {
-  animation-delay: 0.3s;
-}
-.stagger-4 {
-  animation-delay: 0.4s;
-}
-.stagger-5 {
-  animation-delay: 0.5s;
+  background: rgba(99, 102, 241, 0.5);
 }

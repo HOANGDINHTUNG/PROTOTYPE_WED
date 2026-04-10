@@ -1,28 +1,53 @@
-import { formatCurrency, formatNumber } from '../../utils/format';
-import { Card } from '../common/Card';
-import type { DashboardSummary } from '../../types';
+import { useTranslation } from "react-i18next";
+import { formatCurrency, formatNumber } from "../../utils/format";
+import { Card } from "../common/Card";
+import type { DashboardSummary } from "../../types";
 
 interface ChannelBreakdownProps {
   summary: DashboardSummary;
 }
 
 export const ChannelBreakdown = ({ summary }: ChannelBreakdownProps) => {
-  const peakOrders = Math.max(...summary.channelBreakdown.map((item) => item.totalOrders), 1);
+  const { t } = useTranslation();
+  const peakOrders = Math.max(
+    ...summary.channelBreakdown.map((item) => item.totalOrders),
+    1,
+  );
 
   return (
-    <Card title="Đơn theo từng kênh" subtitle="Mini chart giúp nhìn nhanh kênh nào tạo ra nhiều đơn nhất">
-      <div className="space-y-4">
+    <Card
+      title={t("dashboard.channels.title")}
+      subtitle={t("dashboard.channels.subtitle")}
+    >
+      <div className="space-y-6">
         {summary.channelBreakdown.map((item) => (
-          <div key={item.channel} className="space-y-2">
-            <div className="flex items-center justify-between gap-4 text-sm text-slate-200">
-              <div>
-                <p className="font-medium text-white">{item.channel}</p>
-                <p className="text-slate-400">Doanh thu mô phỏng: {formatCurrency(item.revenue)}</p>
+          <div key={item.channel} className="space-y-3">
+            <div className="flex items-center justify-between gap-4">
+              <div className="space-y-0.5">
+                <p className="text-sm font-black text-slate-900 dark:text-white tracking-tight">
+                  {item.channel}
+                </p>
+                <p className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                  {t("dashboard.channels.revenue_sim")}:{" "}
+                  <span className="text-cyan-600 dark:text-cyan-400 font-black">
+                    {formatCurrency(item.revenue)}
+                  </span>
+                </p>
               </div>
-              <p className="text-right font-semibold">{formatNumber(item.totalOrders)} đơn</p>
+              <div className="text-right">
+                <p className="text-sm font-black text-slate-900 dark:text-white">
+                  {formatNumber(item.totalOrders)}
+                </p>
+                <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">
+                  {t("common.orders_unit")}
+                </p>
+              </div>
             </div>
-            <div className="h-2 overflow-hidden rounded-full bg-white/10">
-              <div className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" style={{ width: `${(item.totalOrders / peakOrders) * 100}%` }} />
+            <div className="h-1.5 overflow-hidden rounded-full bg-slate-100 dark:bg-white/5">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 shadow-[0_0_8px_rgba(6,182,212,0.3)] transition-all duration-1000"
+                style={{ width: `${(item.totalOrders / peakOrders) * 100}%` }}
+              />
             </div>
           </div>
         ))}

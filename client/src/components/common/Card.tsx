@@ -1,5 +1,5 @@
-import type { PropsWithChildren, ReactNode } from 'react';
-import { classNames } from '../../utils/classNames';
+import type { PropsWithChildren, ReactNode } from "react";
+import { classNames } from "../../utils/classNames";
 
 interface CardProps extends PropsWithChildren {
   title?: string;
@@ -8,22 +8,36 @@ interface CardProps extends PropsWithChildren {
   className?: string;
 }
 
-export const Card = ({ title, subtitle, action, className, children }: CardProps) => (
+export const Card = ({
+  title,
+  subtitle,
+  action,
+  className,
+  children,
+}: CardProps) => (
   <section
     className={classNames(
-      'rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_20px_80px_-35px_rgba(56,189,248,0.35)] backdrop-blur-xl',
+      "rounded-[32px] border border-white/60 bg-white/85 p-7 backdrop-blur-2xl transition-all duration-500 shadow-[0_1px_0_rgba(255,255,255,0.9)_inset,0_8px_32px_-4px_rgba(100,116,139,0.12)] dark:border-indigo-500/10 dark:bg-[#0e172a] dark:shadow-[0_1px_0_rgba(255,255,255,0.03)_inset,0_20px_48px_-8px_rgba(0,0,0,0.6)]",
       className,
     )}
   >
     {(title || subtitle || action) && (
-      <header className="mb-4 flex items-start justify-between gap-4">
-        <div>
-          {title ? <h3 className="text-lg font-semibold text-white">{title}</h3> : null}
-          {subtitle ? <p className="mt-1 text-sm text-slate-300">{subtitle}</p> : null}
+      <header className="mb-7 flex items-start justify-between gap-4">
+        <div className="space-y-1.5">
+          {title ? (
+            <h3 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">
+              {title}
+            </h3>
+          ) : null}
+          {subtitle ? (
+            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500">
+              {subtitle}
+            </p>
+          ) : null}
         </div>
         {action}
       </header>
     )}
-    {children}
+    <div className="relative">{children}</div>
   </section>
 );

@@ -5,6 +5,7 @@ import { RecentOrders } from "../components/dashboard/RecentOrders";
 import { LiveLogFeed } from "../components/logs/LiveLogFeed";
 import { EmptyState } from "../components/common/EmptyState";
 import { SectionHeading } from "../components/common/SectionHeading";
+import { useTranslation } from "react-i18next";
 import {
   selectDashboardSummary,
   selectRecentOrders,
@@ -13,6 +14,7 @@ import { selectProducts } from "../features/inventory/inventorySlice";
 import { useAppSelector } from "../hooks/redux";
 
 export const DashboardPage = () => {
+  const { t } = useTranslation();
   const summary = useAppSelector(selectDashboardSummary);
   const recentOrders = useAppSelector(selectRecentOrders);
   const products = useAppSelector(selectProducts);
@@ -20,8 +22,8 @@ export const DashboardPage = () => {
   if (!summary) {
     return (
       <EmptyState
-        title="Chưa có dữ liệu dashboard"
-        description="Hãy nạp dữ liệu mẫu hoặc kết nối backend để bắt đầu."
+        title={t("dashboard.empty_title")}
+        description={t("dashboard.empty_desc")}
       />
     );
   }
@@ -30,9 +32,9 @@ export const DashboardPage = () => {
     <div className="space-y-8 pb-12">
       <HeroPanel />
       <SectionHeading
-        eyebrow="Dashboard tổng quan"
-        title="Nhìn nhanh tình trạng đơn hàng, tồn kho và hiệu suất đa kênh"
-        description="Đây là trang đầu tiên để khách hàng hoặc giảng viên hiểu ngay hệ thống đóng vai trò trung tâm điều phối đơn hàng omnichannel."
+        eyebrow={t("dashboard.eyebrow")}
+        title={t("dashboard.title")}
+        description={t("dashboard.desc")}
       />
       <MetricGrid summary={summary} />
 
