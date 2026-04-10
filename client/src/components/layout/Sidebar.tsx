@@ -41,11 +41,11 @@ export const Sidebar = () => {
     <aside className="glass-panel flex flex-col h-full rounded-[36px] p-6 gap-6">
       {/* Logo */}
       <div className="flex items-center gap-4 px-2 pt-2">
-        <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-[18px] bg-gradient-to-br from-indigo-600 to-cyan-500 shadow-lg shadow-indigo-500/30">
+        <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-[18px] bg-linear-to-br from-indigo-600 to-cyan-500 shadow-lg shadow-indigo-500/30">
           <img
-            src="/src/images/logo.png"
+            src="../../../public/images/cabybara.png"
             alt="Capybara Logo"
-            className="h-9 w-9 object-contain drop-shadow-md"
+            className="h-12 w-12 object-contain drop-shadow-md"
           />
         </div>
         <div>
@@ -70,7 +70,7 @@ export const Sidebar = () => {
                 classNames(
                   "group flex items-center gap-3.5 rounded-2xl px-4 py-3.5 transition-all duration-300",
                   isActive
-                    ? "bg-gradient-to-r from-indigo-600 to-indigo-500 text-white shadow-lg shadow-indigo-500/25"
+                    ? "bg-linear-to-r from-indigo-600 to-indigo-500 text-white shadow-lg shadow-indigo-500/25"
                     : "text-slate-500 hover:bg-indigo-50 hover:text-indigo-700 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-indigo-300",
                 )
               }
