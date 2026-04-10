@@ -1,8 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import type { Theme, Language, UIContextType } from "../types/ui";
-
-const UIContext = createContext<UIContextType | undefined>(undefined);
+import type { Theme, Language } from "../types/ui";
+import { UIContext } from "./UIContext_internal";
 
 export const UIProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -43,12 +42,4 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({
       {children}
     </UIContext.Provider>
   );
-};
-
-export const useUI = () => {
-  const context = useContext(UIContext);
-  if (!context) {
-    throw new Error("useUI must be used within a UIProvider");
-  }
-  return context;
 };

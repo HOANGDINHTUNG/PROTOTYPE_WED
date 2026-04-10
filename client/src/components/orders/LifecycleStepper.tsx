@@ -134,7 +134,7 @@ export const LifecycleStepper = ({ currentStatus }: LifecycleStepperProps) => {
 
             {index < statusSteps.length - 1 && (
               <div
-                className={`h-[2px] flex-1 mx-1.5 rounded-full transition-all duration-700 ${isCompleted ? "bg-gradient-to-r from-cyan-500 to-cyan-500/50" : "bg-slate-100 dark:bg-white/5"}`}
+                className={`h-0.5 flex-1 mx-1.5 rounded-full transition-all duration-700 ${isCompleted ? "bg-linear-to-r from-cyan-500 to-cyan-500/50" : "bg-slate-100 dark:bg-white/5"}`}
               />
             )}
           </div>

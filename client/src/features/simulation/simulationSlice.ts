@@ -159,6 +159,62 @@ export const createOrder = createAsyncThunk(
   },
 );
 
+export const updateOrderStatus = createAsyncThunk(
+  "simulation/updateOrderStatus",
+  async (
+    payload: { orderId: string; status: OrderStatus; note?: string },
+    { dispatch, getState },
+  ) => {
+    const state = getState() as RootState;
+    const snapshot = state.simulation.snapshot;
+    if (!snapshot) throw new Error("Snapshot not found");
+
+    // create a cloned snapshot and update the order
+    const updatedSnapshot: SimulationSnapshot = JSON.parse(
+      JSON.stringify(snapshot),
+    );
+
+    const order = updatedSnapshot.orders.find((o) => o.id === payload.orderId);
+    const now = new Date().toISOString();
+    if (!order) throw new Error("Order not found");
+
+    // update timeline and status
+    order.status = payload.status;
+    order.timeline.push({
+      status: payload.status,
+      timestamp: now,
+      note: payload.note ?? "",
+    });
+    order.updatedAt = now;
+
+    // If marking as returned, reduce activeOrders on the fulfillment point and adjust inventory if possible
+    if (payload.status === "Hoàn hàng") {
+      const point = updatedSnapshot.fulfillmentPoints.find(
+        (p) => p.id === order.fulfilledByPointId,
+      );
+      if (point) {
+        point.activeOrders = Math.max(0, point.activeOrders - 1);
+        order.items.forEach((it) => {
+          const inv = point.inventory.find((i) => i.productId === it.productId);
+          if (inv) {
+            inv.availableQuantity += it.quantity;
+            inv.reservedQuantity = Math.max(
+              0,
+              inv.reservedQuantity - it.quantity,
+            );
+            inv.updatedAt = now;
+          }
+        });
+      }
+    }
+
+    // persist updated snapshot
+    await simulationService.updateSnapshot(updatedSnapshot);
+    const result = await dispatch(fetchSimulationSnapshot());
+    return result;
+  },
+);
+
 export const simulateOrders = createAsyncThunk(
   "simulation/simulateOrders",
   async (_, { dispatch, getState }) => {

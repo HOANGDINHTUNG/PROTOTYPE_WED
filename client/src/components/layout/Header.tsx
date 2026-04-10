@@ -1,7 +1,7 @@
 import { Activity, Sparkles, Moon, Sun } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useUI } from "../../context/UIContext";
 import { Button } from "../common/Button";
+import { useUI } from "../../context/useUI";
 
 export const Header = () => {
   const { theme, toggleTheme, language, setLanguage } = useUI();

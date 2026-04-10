@@ -44,7 +44,7 @@ export const CandidateTable = ({ candidates }: CandidateTableProps) => {
             {candidates.map((candidate) => (
               <tr
                 key={candidate.pointId}
-                className={`transition-all duration-300 ${candidate.isEligible ? "hover:bg-cyan-50 dark:hover:bg-cyan-500/[0.03]" : "bg-rose-500/[0.01] dark:bg-red-500/[0.02] hover:bg-rose-500/[0.03] dark:hover:bg-red-500/5"}`}
+                className={`transition-all duration-300 ${candidate.isEligible ? "hover:bg-cyan-50 dark:hover:bg-cyan-500/3" : "bg-rose-500/1 dark:bg-red-500/2 hover:bg-rose-500/3 dark:hover:bg-red-500/5"}`}
               >
                 <td className="px-6 py-5">
                   <div className="flex items-center gap-4">
@@ -66,7 +66,7 @@ export const CandidateTable = ({ candidates }: CandidateTableProps) => {
                   </div>
                 </td>
                 <td className="px-6 py-5">
-                  <div className="flex flex-col gap-2 min-w-[120px]">
+                  <div className="flex flex-col gap-2 min-w-30">
                     <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
                       <span className="text-slate-400 dark:text-slate-500">
                         {t("decision.stock_level")}
@@ -83,7 +83,7 @@ export const CandidateTable = ({ candidates }: CandidateTableProps) => {
                     </div>
                     <div className="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden shadow-inner">
                       <div
-                        className={`h-full transition-all duration-1000 ${candidate.availableQuantity > 0 ? "bg-gradient-to-r from-cyan-600 to-indigo-500" : "bg-rose-500"}`}
+                        className={`h-full transition-all duration-1000 ${candidate.availableQuantity > 0 ? "bg-linear-to-r from-cyan-600 to-indigo-500" : "bg-rose-500"}`}
                         style={{
                           width: `${Math.min(100, (candidate.availableQuantity / 50) * 100)}%`,
                         }}
@@ -93,7 +93,7 @@ export const CandidateTable = ({ candidates }: CandidateTableProps) => {
                 </td>
                 <td className="px-6 py-5 text-center">
                   <span
-                    className={`inline-flex items-center justify-center min-w-[3.5rem] rounded-xl px-3 py-2 text-sm font-black border shadow-sm ${
+                    className={`inline-flex items-center justify-center min-w-14 rounded-xl px-3 py-2 text-sm font-black border shadow-sm ${
                       candidate.isEligible
                         ? "bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:border-emerald-500/30"
                         : "bg-rose-50 text-rose-400 border-rose-200 dark:bg-rose-500/10 dark:text-rose-300 dark:border-rose-500/30 line-through opacity-50"

@@ -5,7 +5,7 @@ import { ToastContainer } from "../common/Toast";
 
 export const AppShell = () => (
   <div className="min-h-screen transition-colors duration-500 text-slate-900 dark:text-white">
-    <div className="mx-auto grid min-h-screen max-w-[1600px] grid-cols-1 gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:px-6">
+    <div className="mx-auto grid min-h-screen max-w-500 grid-cols-1 gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:px-6">
       <div className="lg:sticky lg:top-0 lg:h-screen lg:py-6">
         <Sidebar />
       </div>

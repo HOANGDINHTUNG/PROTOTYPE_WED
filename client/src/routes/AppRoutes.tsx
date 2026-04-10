@@ -1,12 +1,13 @@
-import { Route, Routes } from 'react-router-dom';
-import { AppShell } from '../components/layout/AppShell';
-import { CreateOrderPage } from '../pages/CreateOrderPage';
-import { DashboardPage } from '../pages/DashboardPage';
-import { DecisionEnginePage } from '../pages/DecisionEnginePage';
-import { InventoryPage } from '../pages/InventoryPage';
-import { LogsPage } from '../pages/LogsPage';
-import { NotFoundPage } from '../pages/NotFoundPage';
-import { OrdersPage } from '../pages/OrdersPage';
+import { Route, Routes } from "react-router-dom";
+import { AppShell } from "../components/layout/AppShell";
+import { CreateOrderPage } from "../pages/CreateOrderPage";
+import { DashboardPage } from "../pages/DashboardPage";
+import { DecisionEnginePage } from "../pages/DecisionEnginePage";
+import { InventoryPage } from "../pages/InventoryPage";
+import { LogsPage } from "../pages/LogsPage";
+import { NotFoundPage } from "../pages/NotFoundPage";
+import { OrdersPage } from "../pages/OrdersPage";
+import { OrderDetailPage } from "../pages/OrderDetailPage";
 
 export const AppRoutes = () => (
   <Routes>
@@ -15,6 +16,7 @@ export const AppRoutes = () => (
       <Route path="/orders/create" element={<CreateOrderPage />} />
       <Route path="/decision-engine" element={<DecisionEnginePage />} />
       <Route path="/orders" element={<OrdersPage />} />
+      <Route path="/orders/:id" element={<OrderDetailPage />} />
       <Route path="/inventory" element={<InventoryPage />} />
       <Route path="/logs" element={<LogsPage />} />
       <Route path="*" element={<NotFoundPage />} />

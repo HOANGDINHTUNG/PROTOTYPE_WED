@@ -1,8 +1,13 @@
 import { useTranslation } from "react-i18next";
-import type { Order, Product } from "../../types";
+import type { Order, Product, OrderStatus } from "../../types";
 import { formatCurrency, formatDateTime } from "../../utils/format";
 import { LifecycleStepper } from "./LifecycleStepper";
+import { Button } from "../common/Button";
 import { ShoppingBag, MapPin, Calendar, ArrowRight } from "lucide-react";
+import { useAppDispatch } from "../../hooks/redux";
+import { updateOrderStatus } from "../../features/simulation/simulationSlice";
+import { addNotification } from "../../features/notifications/notificationsSlice";
+import { useNavigate } from "react-router-dom";
 
 interface OrderTableProps {
   orders: Order[];
@@ -11,12 +16,46 @@ interface OrderTableProps {
 
 export const OrderTable = ({ orders, products }: OrderTableProps) => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const productNameById = new Map(
     products.map((product) => [product.id, product.name]),
   );
 
+  const simulateStatusProgression = async (orderId: string) => {
+    const steps = [
+      "Đang xác nhận",
+      "Chuẩn bị hàng",
+      "Đóng gói",
+      "Chờ lấy hàng",
+      "Đang giao",
+      "Trên đường",
+      "Sắp tới nơi",
+      "Giao thử lần 1",
+      "Giao thử lần 2",
+      "Giao thành công",
+    ];
+
+    for (let i = 0; i < steps.length; i++) {
+      const msg = `${steps[i]} (${i + 1}/${steps.length})`;
+      dispatch(addNotification({ type: "info", message: msg, duration: 2500 }));
+      const coarse: OrderStatus =
+        i < 4 ? "Đang xử lý" : i < 8 ? "Đang giao" : "Giao thành công";
+      await dispatch(updateOrderStatus({ orderId, status: coarse, note: msg }));
+      // wait between steps
+      await new Promise((r) => setTimeout(r, 600));
+    }
+    dispatch(
+      addNotification({
+        type: "success",
+        message: "Cập nhật trạng thái hoàn tất",
+        duration: 4000,
+      }),
+    );
+  };
+
   return (
-    <div className="glass-panel rounded-[32px] overflow-hidden border border-white/40 shadow-xl dark:border-white/5 dark:bg-slate-900/60">
+    <div className="glass-panel rounded-4xl overflow-hidden border border-white/40 shadow-xl dark:border-white/5 dark:bg-slate-900/60">
       <div className="px-8 py-6 border-b border-white/40 dark:border-white/5 bg-white/40 dark:bg-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <h3 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
@@ -61,7 +100,7 @@ export const OrderTable = ({ orders, products }: OrderTableProps) => {
               orders.map((order) => (
                 <tr
                   key={order.id}
-                  className="hover:bg-cyan-50/30 dark:hover:bg-white/[0.02] transition-colors group"
+                  className="hover:bg-cyan-50/30 dark:hover:bg-white/2 transition-colors group"
                 >
                   <td className="px-8 py-6">
                     <div className="flex flex-col gap-1.5">
@@ -123,13 +162,55 @@ export const OrderTable = ({ orders, products }: OrderTableProps) => {
                     <LifecycleStepper currentStatus={order.status} />
                   </td>
                   <td className="px-8 py-6 text-right">
-                    <div className="flex flex-col items-end gap-1.5">
+                    <div className="flex flex-col items-end gap-3">
                       <div className="font-black text-slate-900 dark:text-white text-lg tracking-tight">
                         {formatCurrency(order.totalAmount)}
                       </div>
                       <div className="flex items-center gap-1.5 text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest">
                         <Calendar className="w-3 h-3" />
                         {formatDateTime(order.createdAt).split(" ")[0]}
+                      </div>
+
+                      <div className="flex items-center gap-2 mt-2">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => {
+                            // quick cycle through statuses: Đã tiếp nhận -> Đang xử lý -> Đang giao -> Giao thành công
+                            // Run a 10-step progression with notifications
+                            void simulateStatusProgression(order.id);
+                          }}
+                        >
+                          Cập nhật trạng thái
+                        </Button>
+
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            // mark order as returned
+                            dispatch(
+                              updateOrderStatus({
+                                orderId: order.id,
+                                status: "Hoàn hàng",
+                                note: "Đã đánh dấu hoàn hàng từ UI",
+                              }),
+                            );
+                          }}
+                        >
+                          Hoàn hàng
+                        </Button>
+
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            // navigate to order detail page (if exists)
+                            navigate(`/orders/${order.id}`);
+                          }}
+                        >
+                          Xem chi tiết
+                        </Button>
                       </div>
                     </div>
                   </td>

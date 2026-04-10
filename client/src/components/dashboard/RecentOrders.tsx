@@ -24,7 +24,7 @@ export const RecentOrders = ({ orders, products }: RecentOrdersProps) => {
         {orders.map((order) => (
           <div
             key={order.id}
-            className="rounded-[24px] border border-slate-200/60 bg-white/40 p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-cyan-200/50 dark:border-white/5 dark:bg-slate-800/40 dark:hover:bg-slate-800/60"
+            className="rounded-3xl border border-slate-200/60 bg-white/40 p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-cyan-200/50 dark:border-white/5 dark:bg-slate-800/40 dark:hover:bg-slate-800/60"
           >
             <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
               <div className="space-y-2">

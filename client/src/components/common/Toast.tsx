@@ -63,11 +63,11 @@ export const Toast = ({ id, type, message, duration = 5000 }: ToastProps) => {
   return (
     <div
       className={`
-      flex items-center gap-4 px-6 py-4 rounded-[24px] border backdrop-blur-2xl shadow-2xl animate-fade-in-up
+      flex items-center gap-4 px-6 py-4 rounded-3xl border backdrop-blur-2xl shadow-2xl animate-fade-in-up
       ${bg} ${border} ${color}
     `}
     >
-      <Icon className="w-6 h-6 flex-shrink-0" />
+      <Icon className="w-6 h-6 shrink-0" />
       <p className="text-sm font-black tracking-tight text-slate-900 dark:text-white">
         {message}
       </p>
@@ -88,7 +88,7 @@ export const ToastContainer = () => {
   const notifications = useAppSelector(selectNotifications);
 
   return (
-    <div className="fixed bottom-6 right-6 z-[9999] flex flex-col gap-3 pointer-events-none">
+    <div className="fixed bottom-6 right-6 z-9999 flex flex-col gap-3 pointer-events-none">
       {notifications.map((n) => (
         <div key={n.id} className="pointer-events-auto">
           <Toast {...n} />

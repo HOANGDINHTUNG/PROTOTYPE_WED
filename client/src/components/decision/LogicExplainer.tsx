@@ -5,7 +5,7 @@ export const LogicExplainer = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="glass-panel p-8 rounded-[32px] space-y-6 shadow-xl">
+    <div className="glass-panel p-8 rounded-4xl space-y-6 shadow-xl">
       <div className="flex items-center gap-3 mb-2">
         <div className="p-2 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400">
           <Info className="w-5 h-5" />

@@ -55,7 +55,7 @@ export const InventoryOverview = ({ points }: InventoryOverviewProps) => {
             </div>
             <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-slate-100 dark:bg-white/5">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 shadow-[0_0_10px_rgba(6,182,212,0.3)]"
+                className="h-full rounded-full bg-linear-to-r from-cyan-500 to-indigo-500 shadow-[0_0_10px_rgba(6,182,212,0.3)]"
                 style={{
                   width: `${Math.min((point.activeOrders / point.handlingCapacity) * 100, 100)}%`,
                 }}

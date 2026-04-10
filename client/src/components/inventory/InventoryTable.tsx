@@ -25,7 +25,7 @@ export const InventoryTable = ({ rows }: InventoryTableProps) => {
       {rows.map((row) => (
         <div
           key={row.product.id}
-          className="glass-panel rounded-[32px] overflow-hidden border border-white/40 shadow-xl dark:border-white/5 dark:bg-slate-900/50"
+          className="glass-panel rounded-4xl overflow-hidden border border-white/40 shadow-xl dark:border-white/5 dark:bg-slate-900/50"
         >
           <div className="px-8 py-6 bg-white/40 dark:bg-white/5 border-b border-white/40 dark:border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-center gap-5">
@@ -63,7 +63,7 @@ export const InventoryTable = ({ rows }: InventoryTableProps) => {
                   key={`${row.product.id}-${stock.pointId}`}
                   className={`
                   glass-card p-6 rounded-2xl border transition-all duration-300 relative overflow-hidden group/item
-                  ${isLowStock ? "border-rose-500/20 bg-rose-500/[0.03] dark:bg-rose-500/[0.05]" : "border-slate-200/50 bg-white/60 dark:bg-slate-800/40 dark:border-white/5"}
+                  ${isLowStock ? "border-rose-500/20 bg-rose-500/3 dark:bg-rose-500/5" : "border-slate-200/50 bg-white/60 dark:bg-slate-800/40 dark:border-white/5"}
                 `}
                 >
                   <div className="flex justify-between items-start mb-6">
