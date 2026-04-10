@@ -13,3 +13,7 @@ export interface NavItem {
   to: string;
   description: string;
 }
+export interface SelectorOption<T = string> {
+  label: string;
+  value: T;
+}

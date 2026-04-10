@@ -4,10 +4,10 @@ import type {
   OrderStatus,
   PaymentMethod,
   SalesChannel,
-  SelectOption,
+  SelectorOption,
 } from "../types";
 
-export const salesChannels: SelectOption<SalesChannel>[] = [
+export const salesChannels: SelectorOption<SalesChannel>[] = [
   { label: "Website", value: "Website" },
   { label: "Shopee", value: "Shopee" },
   { label: "TikTok Shop", value: "TikTok Shop" },
@@ -15,7 +15,7 @@ export const salesChannels: SelectOption<SalesChannel>[] = [
   { label: "Offline", value: "Offline" },
 ];
 
-export const customerAreas: SelectOption<CustomerArea>[] = [
+export const customerAreas: SelectorOption<CustomerArea>[] = [
   { label: "Quận 1", value: "Quận 1" },
   { label: "Quận 3", value: "Quận 3" },
   { label: "Quận 5", value: "Quận 5" },
@@ -27,12 +27,12 @@ export const customerAreas: SelectOption<CustomerArea>[] = [
   { label: "Thủ Đức", value: "Thủ Đức" },
 ];
 
-export const fulfillmentModes: SelectOption<FulfillmentMode>[] = [
+export const fulfillmentModes: SelectorOption<FulfillmentMode>[] = [
   { label: "Giao tận nơi", value: "Giao tận nơi" },
   { label: "Nhận tại cửa hàng", value: "Nhận tại cửa hàng" },
 ];
 
-export const paymentMethods: SelectOption<PaymentMethod>[] = [
+export const paymentMethods: SelectorOption<PaymentMethod>[] = [
   { label: "COD", value: "COD" },
   { label: "ĐÃ THANH TOÁN", value: "Đã thanh toán" },
   { label: "CHUYỂN KHOẢN", value: "Chuyển khoản" },

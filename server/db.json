@@ -44,10 +44,7 @@
         "price": 1590000,
         "thumbnail": "/images/products/headphone.png",
         "unit": "chiếc",
-        "tags": [
-          "best seller",
-          "premium"
-        ]
+        "tags": ["best seller", "premium"]
       },
       {
         "id": "p2",
@@ -57,10 +54,7 @@
         "price": 2390000,
         "thumbnail": "/images/products/watch.png",
         "unit": "chiếc",
-        "tags": [
-          "new",
-          "tracking"
-        ]
+        "tags": ["new", "tracking"]
       },
       {
         "id": "p3",
@@ -70,10 +64,7 @@
         "price": 690000,
         "thumbnail": "/images/products/bag.png",
         "unit": "túi",
-        "tags": [
-          "warehouse",
-          "durable"
-        ]
+        "tags": ["warehouse", "durable"]
       },
       {
         "id": "p4",
@@ -83,10 +74,7 @@
         "price": 1190000,
         "thumbnail": "/images/products/shoe.png",
         "unit": "đôi",
-        "tags": [
-          "hot",
-          "fast pick"
-        ]
+        "tags": ["hot", "fast pick"]
       },
       {
         "id": "p5",
@@ -96,10 +84,7 @@
         "price": 320000,
         "thumbnail": "/images/products/tshirt.png",
         "unit": "áo",
-        "tags": [
-          "uniform",
-          "lightweight"
-        ]
+        "tags": ["uniform", "lightweight"]
       },
       {
         "id": "p6",
@@ -109,10 +94,7 @@
         "price": 3490000,
         "thumbnail": "/images/products/scanner.png",
         "unit": "máy",
-        "tags": [
-          "ops",
-          "barcode"
-        ]
+        "tags": ["ops", "barcode"]
       },
       {
         "id": "p7",
@@ -122,10 +104,7 @@
         "price": 450000,
         "thumbnail": "/images/products/mouse.png",
         "unit": "chiếc",
-        "tags": [
-          "wireless",
-          "office"
-        ]
+        "tags": ["wireless", "office"]
       },
       {
         "id": "p8",
@@ -135,10 +114,7 @@
         "price": 1850000,
         "thumbnail": "/images/products/keyboard.png",
         "unit": "chiếc",
-        "tags": [
-          "mechanical",
-          "silent"
-        ]
+        "tags": ["mechanical", "silent"]
       },
       {
         "id": "p9",
@@ -148,10 +124,7 @@
         "price": 720000,
         "thumbnail": "/images/products/lamp.png",
         "unit": "chiếc",
-        "tags": [
-          "smart",
-          "lighting"
-        ]
+        "tags": ["smart", "lighting"]
       },
       {
         "id": "p10",
@@ -161,10 +134,7 @@
         "price": 950000,
         "thumbnail": "/images/products/backpack.png",
         "unit": "chiếc",
-        "tags": [
-          "waterproof",
-          "travel"
-        ]
+        "tags": ["waterproof", "travel"]
       },
       {
         "id": "p11",
@@ -174,10 +144,7 @@
         "price": 2890000,
         "thumbnail": "/images/products/camera.png",
         "unit": "chiếc",
-        "tags": [
-          "security",
-          "ai"
-        ]
+        "tags": ["security", "ai"]
       },
       {
         "id": "p12",
@@ -187,10 +154,7 @@
         "price": 5490000,
         "thumbnail": "/images/products/robot.png",
         "unit": "chiếc",
-        "tags": [
-          "smart home",
-          "vacuum"
-        ]
+        "tags": ["smart home", "vacuum"]
       },
       {
         "id": "p13",
@@ -200,10 +164,7 @@
         "price": 850000,
         "thumbnail": "/images/products/powerbank.png",
         "unit": "chiếc",
-        "tags": [
-          "fast charge",
-          "travel"
-        ]
+        "tags": ["fast charge", "travel"]
       },
       {
         "id": "p14",
@@ -213,10 +174,7 @@
         "price": 12500000,
         "thumbnail": "/images/products/drone.png",
         "unit": "chiếc",
-        "tags": [
-          "delivery",
-          "high-tech"
-        ]
+        "tags": ["delivery", "high-tech"]
       },
       {
         "id": "p15",
@@ -226,10 +184,7 @@
         "price": 2150000,
         "thumbnail": "/images/products/printer.png",
         "unit": "máy",
-        "tags": [
-          "printing",
-          "shipping"
-        ]
+        "tags": ["printing", "shipping"]
       }
     ],
     "fulfillmentPoints": [
@@ -507,7 +462,7 @@
         "channel": "Facebook",
         "fulfillmentMode": "Giao tận nơi",
         "paymentMethod": "COD",
-        "status": "Đóng gói",
+        "status": "Đã đóng gói",
         "fulfilledByPointId": "fp4",
         "fulfilledByPointName": "Cửa hàng Quận 7",
         "shippingDistanceKm": 1.8,

@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import {
@@ -34,25 +34,37 @@ export const OrderCreationForm = ({
   }));
 
   // Re-sync basic default strings if language changes without resetting form
-  useEffect(() => {
-    setForm((prev) => {
-      // Only update if current value is the default from PREVIOUS language
-      if (
-        !prev.customerName ||
-        prev.customerName ===
-          t("create_order.form.default_name", {
-            lng: i18next.language === "en" ? "vi" : "en",
-          })
-      ) {
-        return {
-          ...prev,
-          customerName: t("create_order.form.default_name"),
-          notes: t("create_order.form.default_notes"),
-        };
-      }
-      return prev;
+  const [prevLanguage, setPrevLanguage] = useState(i18next.language || "vi");
+
+  if (i18next.language !== prevLanguage) {
+    setPrevLanguage(i18next.language);
+
+    // Only update if current value is the default from PREVIOUS language
+    const oldDefaultName = t("create_order.form.default_name", {
+      lng: prevLanguage,
     });
-  }, [t]);
+    const oldDefaultNotes = t("create_order.form.default_notes", {
+      lng: prevLanguage,
+    });
+
+    if (
+      !form.customerName ||
+      form.customerName === oldDefaultName ||
+      form.notes === oldDefaultNotes
+    ) {
+      setForm((prev) => ({
+        ...prev,
+        customerName:
+          !prev.customerName || prev.customerName === oldDefaultName
+            ? t("create_order.form.default_name")
+            : prev.customerName,
+        notes:
+          prev.notes === oldDefaultNotes
+            ? t("create_order.form.default_notes")
+            : prev.notes,
+      }));
+    }
+  }
 
   const firstProductId = useMemo(() => products[0]?.id ?? "", [products]);
 
@@ -123,7 +135,12 @@ export const OrderCreationForm = ({
             onChange={(event) =>
               setForm((current) => ({
                 ...current,
-                items: [{ ...current.items[0], productId: event.target.value }],
+                items: [
+                  {
+                    productId: event.target.value,
+                    quantity: current.items[0]?.quantity || 1,
+                  },
+                ],
               }))
             }
           >
@@ -148,7 +165,7 @@ export const OrderCreationForm = ({
                 ...current,
                 items: [
                   {
-                    ...current.items[0],
+                    productId: current.items[0]?.productId || firstProductId,
                     quantity: Number(event.target.value) || 1,
                   },
                 ],
