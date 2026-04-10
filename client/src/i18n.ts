@@ -71,7 +71,7 @@ const resources = {
           logic_btn: "Xem logic điều phối",
           stress_btn: "Stress Test Mode",
           stat_order: "Trạng thái đơn",
-          stat_order_val: "7 bước",
+          stat_order_val: "10 bước",
           stat_order_desc: "Từ tiếp nhận đến hoàn hàng",
           stat_inv: "Đồng bộ tồn kho",
           stat_inv_val: "5 điểm",
@@ -133,6 +133,12 @@ const resources = {
           Packed: "Đã đóng gói",
           Shipping: "Đang giao",
           Delivered: "Thành công",
+          Verified: "Xác minh",
+          StockCheck: "Kiểm tra kho",
+          Allocated: "Được phân bổ",
+          Paid: "Trả",
+          Ready: "Sẵn sàng",
+          Reconciled: "Lưu dữ liệu"
         },
       },
       create_order: {
@@ -292,7 +298,7 @@ const resources = {
           logic_btn: "View Dispatch Logic",
           stress_btn: "Stress Test Mode",
           stat_order: "Order Status",
-          stat_order_val: "7 steps",
+          stat_order_val: "10 steps",
           stat_order_desc: "From intake to return",
           stat_inv: "Inventory Sync",
           stat_inv_val: "5 points",
@@ -353,6 +359,12 @@ const resources = {
           Packed: "Packed",
           Shipping: "Shipping",
           Delivered: "Delivered",
+          Verified: "Verified",
+          StockCheck: "StockCheck",
+          Allocated: "Allocated",
+          Paid: "Paid",
+          Ready: "Ready",
+          Reconciled: "Reconciled"
         },
       },
       create_order: {

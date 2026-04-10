@@ -72,6 +72,7 @@ export const LogicExplainer = () => {
         </div>
         <code className="text-cyan-700 dark:text-cyan-300 text-sm font-black mono break-all bg-white/50 dark:bg-black/20 px-3 py-2 rounded-lg">
           Score = Distance(km) + (ActiveOrders/Capacity * 8) - PickupBoost
+          <span>(Điểm = Khoảng cách (km) + (Số đơn hàng đang hoạt động/Sức chứa * 8) - Tăng cường nhận hàng)</span>
         </code>
         <div className="mt-4 pt-4 border-t border-slate-200/50 dark:border-white/5">
           <p className="text-[11px] text-slate-500 dark:text-slate-500 italic font-medium">

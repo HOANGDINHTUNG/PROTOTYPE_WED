@@ -243,12 +243,12 @@ export const OrderCreationForm = ({
             ))}
           </select>
         </label>
-        <label className="space-y-2 md:col-span-2">
+        <label className="space-y-2 md:col-span-2 flex flex-col">
           <span className="text-sm text-slate-600 font-medium">
             {t("create_order.form.notes")}
           </span>
           <textarea
-            className="input-dark min-h-28 resize-none"
+            className="input-dark min-h-20 resize-none"
             value={form.notes}
             onChange={(event) =>
               setForm((current) => ({ ...current, notes: event.target.value }))
