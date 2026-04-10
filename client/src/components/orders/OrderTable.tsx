@@ -107,7 +107,9 @@ export const OrderTable = ({ orders, products }: OrderTableProps) => {
                         <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest flex items-center gap-1.5">
                           <ArrowRight className="w-3 h-3" />
                           {t("orders.table.distance_msg", {
-                            distance: order.shippingDistanceKm.toFixed(1),
+                            distance: (order.shippingDistanceKm ?? 0).toFixed(
+                              1,
+                            ),
                           })}
                         </div>
                       </div>
