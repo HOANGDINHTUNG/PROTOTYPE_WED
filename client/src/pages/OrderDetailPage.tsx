@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { OrderStatus } from "../types";
 import { addNotification } from "../features/notifications/notificationsSlice";
 import { useParams, useNavigate } from "react-router-dom";
@@ -20,6 +20,7 @@ export const OrderDetailPage = () => {
     () => snapshot?.orders.find((o) => o.id === id) ?? null,
     [snapshot, id],
   );
+  const [running, setRunning] = useState(false);
   const productsById = useMemo(
     () => new Map(snapshot?.products.map((p) => [p.id, p]) ?? []),
     [snapshot],
@@ -42,6 +43,7 @@ export const OrderDetailPage = () => {
   }
 
   const simulateStatusProgression = async (orderId: string) => {
+    setRunning(true);
     const steps = [
       "Đang xác nhận",
       "Chuẩn bị hàng",
@@ -70,6 +72,7 @@ export const OrderDetailPage = () => {
         duration: 4000,
       }),
     );
+    setRunning(false);
   };
 
   return (
@@ -154,6 +157,7 @@ export const OrderDetailPage = () => {
       <div className="flex gap-3">
         <Button
           variant="secondary"
+          disabled={running}
           onClick={() => void simulateStatusProgression(order.id)}
         >
           Cập nhật trạng thái
@@ -161,8 +165,9 @@ export const OrderDetailPage = () => {
 
         <Button
           variant="ghost"
+          disabled={running}
           onClick={() =>
-            dispatch(
+            void dispatch(
               updateOrderStatus({
                 orderId: order.id,
                 status: "Hoàn hàng" as OrderStatus,

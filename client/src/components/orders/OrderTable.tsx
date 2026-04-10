@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 import type { Order, Product, OrderStatus } from "../../types";
 import { formatCurrency, formatDateTime } from "../../utils/format";
 import { LifecycleStepper } from "./LifecycleStepper";
@@ -18,11 +19,13 @@ export const OrderTable = ({ orders, products }: OrderTableProps) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [runningOrders, setRunningOrders] = useState<string[]>([]);
   const productNameById = new Map(
     products.map((product) => [product.id, product.name]),
   );
 
   const simulateStatusProgression = async (orderId: string) => {
+    setRunningOrders((s) => [...s, orderId]);
     const steps = [
       "Đang xác nhận",
       "Chuẩn bị hàng",
@@ -52,6 +55,7 @@ export const OrderTable = ({ orders, products }: OrderTableProps) => {
         duration: 4000,
       }),
     );
+    setRunningOrders((s) => s.filter((id) => id !== orderId));
   };
 
   return (
@@ -175,8 +179,8 @@ export const OrderTable = ({ orders, products }: OrderTableProps) => {
                         <Button
                           variant="secondary"
                           size="sm"
+                          disabled={runningOrders.includes(order.id)}
                           onClick={() => {
-                            // quick cycle through statuses: Đã tiếp nhận -> Đang xử lý -> Đang giao -> Giao thành công
                             // Run a 10-step progression with notifications
                             void simulateStatusProgression(order.id);
                           }}
@@ -187,9 +191,10 @@ export const OrderTable = ({ orders, products }: OrderTableProps) => {
                         <Button
                           variant="ghost"
                           size="sm"
+                          disabled={runningOrders.includes(order.id)}
                           onClick={() => {
                             // mark order as returned
-                            dispatch(
+                            void dispatch(
                               updateOrderStatus({
                                 orderId: order.id,
                                 status: "Hoàn hàng",

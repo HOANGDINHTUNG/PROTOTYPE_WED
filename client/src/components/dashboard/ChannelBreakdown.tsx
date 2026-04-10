@@ -45,7 +45,7 @@ export const ChannelBreakdown = ({ summary }: ChannelBreakdownProps) => {
             </div>
             <div className="h-1.5 overflow-hidden rounded-full bg-slate-100 dark:bg-white/5">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 shadow-[0_0_8px_rgba(6,182,212,0.3)] transition-all duration-1000"
+                className="h-full rounded-full bg-linear-to-r from-cyan-500 to-indigo-500 shadow-[0_0_8px_rgba(6,182,212,0.3)] transition-all duration-1000"
                 style={{ width: `${(item.totalOrders / peakOrders) * 100}%` }}
               />
             </div>

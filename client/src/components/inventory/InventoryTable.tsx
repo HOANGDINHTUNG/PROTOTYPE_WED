@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { formatCurrency } from "../../utils/format";
 import type { Product } from "../../types";
 import { AlertTriangle, ShieldCheck, Box, Clock } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 interface InventoryRow {
   product: Product;
@@ -20,6 +21,40 @@ interface InventoryTableProps {
 
 export const InventoryTable = ({ rows }: InventoryTableProps) => {
   const { t } = useTranslation();
+  const prevRef = useRef<InventoryRow[] | null>(null);
+  const [deltas, setDeltas] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    const prev = prevRef.current;
+    if (prev) {
+      const newDeltas: Record<string, number> = {};
+      rows.forEach((r) => {
+        const p = prev.find((pr) => pr.product.id === r.product.id);
+        if (!p) return;
+        r.stocks.forEach((s) => {
+          const prevStock = p.stocks.find((ps) => ps.pointId === s.pointId);
+          if (!prevStock) return;
+          const delta = s.availableQuantity - prevStock.availableQuantity;
+          if (delta !== 0) {
+            newDeltas[`${r.product.id}::${s.pointId}`] = delta;
+            // clear after short time
+            setTimeout(() => {
+              setDeltas((d) => {
+                const copy = { ...d };
+                delete copy[`${r.product.id}::${s.pointId}`];
+                return copy;
+              });
+            }, 2200);
+          }
+        });
+      });
+      if (Object.keys(newDeltas).length > 0) {
+        // defer state update to avoid synchronous setState inside effect
+        setTimeout(() => setDeltas((d) => ({ ...d, ...newDeltas })), 0);
+      }
+    }
+    prevRef.current = JSON.parse(JSON.stringify(rows));
+  }, [rows]);
   return (
     <div className="space-y-6">
       {rows.map((row) => (
@@ -83,11 +118,23 @@ export const InventoryTable = ({ rows }: InventoryTableProps) => {
                       <div className="flex items-center gap-1 text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                         <Box className="w-2.5 h-2.5" /> {t("common.avail")}
                       </div>
-                      <p
-                        className={`text-lg font-black ${isLowStock ? "text-rose-600 dark:text-rose-400" : "text-cyan-600 dark:text-cyan-400"}`}
-                      >
-                        {stock.availableQuantity}
-                      </p>
+                      <div className="relative inline-flex items-center">
+                        <p
+                          className={`text-lg font-black ${isLowStock ? "text-rose-600 dark:text-rose-400" : "text-cyan-600 dark:text-cyan-400"}`}
+                        >
+                          {stock.availableQuantity}
+                        </p>
+                        {deltas[`${row.product.id}::${stock.pointId}`] !==
+                          undefined && (
+                          <div
+                            className={`ml-3 text-sm font-black px-2 py-0.5 rounded-full ${deltas[`${row.product.id}::${stock.pointId}`] > 0 ? "bg-emerald-100 text-emerald-700" : "bg-rose-100 text-rose-700"} animate-pop`}
+                          >
+                            {deltas[`${row.product.id}::${stock.pointId}`] > 0
+                              ? `+${deltas[`${row.product.id}::${stock.pointId}`]}`
+                              : deltas[`${row.product.id}::${stock.pointId}`]}
+                          </div>
+                        )}
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <div className="flex items-center gap-1 text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">

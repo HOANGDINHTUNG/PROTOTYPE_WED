@@ -16,7 +16,7 @@ export const HeroPanel = () => {
 
   const handleStressTest = async () => {
     dispatch(addNotification({ type: "info", message: t("notif.sim_start") }));
-    await dispatch(simulateOrders());
+    await dispatch(simulateOrders({ count: 8, speedMs: 300 }));
     dispatch(
       addNotification({ type: "success", message: t("notif.sim_success") }),
     );
@@ -78,7 +78,7 @@ export const HeroPanel = () => {
       {/* ── Main Hero ── */}
       <div
         className="relative overflow-hidden rounded-[40px] p-8 md:p-12
-        bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900
+        bg-linear-to-br from-slate-900 via-indigo-950 to-slate-900
         dark:from-[#08091a] dark:via-indigo-950/80 dark:to-[#08091a]
         border border-indigo-500/10 shadow-2xl shadow-indigo-900/20"
       >
@@ -108,7 +108,7 @@ export const HeroPanel = () => {
 
           <div className="flex flex-wrap gap-3 pt-2">
             <Link to="/orders/create">
-              <Button className="rounded-2xl px-7 shadow-xl shadow-indigo-500/25 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white border-0">
+              <Button className="rounded-2xl px-7 shadow-xl shadow-indigo-500/25 bg-linear-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white border-0">
                 {t("dashboard.hero.create_btn")}
                 <ArrowRight size={16} className="ml-2" />
               </Button>

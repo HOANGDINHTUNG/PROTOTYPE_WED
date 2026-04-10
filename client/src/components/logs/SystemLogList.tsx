@@ -25,7 +25,7 @@ export const SystemLogList = ({ logs }: SystemLogListProps) => {
         {logs.map((log) => (
           <div
             key={log.id}
-            className="rounded-[24px] border border-slate-200 bg-white/40 p-5 dark:border-white/5 dark:bg-slate-900/40 transition-all hover:bg-white/60 dark:hover:bg-slate-900/60 shadow-sm"
+            className="rounded-3xl border border-slate-200 bg-white/40 p-5 dark:border-white/5 dark:bg-slate-900/40 transition-all hover:bg-white/60 dark:hover:bg-slate-900/60 shadow-sm"
           >
             <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
               <div className="flex-1">

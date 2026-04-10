@@ -217,7 +217,10 @@ export const updateOrderStatus = createAsyncThunk(
 
 export const simulateOrders = createAsyncThunk(
   "simulation/simulateOrders",
-  async (_, { dispatch, getState }) => {
+  async (
+    params: { count?: number; speedMs?: number } | undefined,
+    { dispatch, getState },
+  ) => {
     const state = getState() as RootState;
     const products = state.simulation.snapshot?.products ?? [];
     const channels = ["Website", "Shopee", "TikTok Shop", "Facebook"];
@@ -232,7 +235,10 @@ export const simulateOrders = createAsyncThunk(
 
     if (products.length === 0) return;
 
-    for (let i = 0; i < 5; i++) {
+    const count = params?.count ?? 5;
+    const speedMs = params?.speedMs ?? 800;
+
+    for (let i = 0; i < count; i++) {
       const randomProduct =
         products[Math.floor(Math.random() * products.length)];
       const randomChannel =
@@ -256,7 +262,7 @@ export const simulateOrders = createAsyncThunk(
 
       await dispatch(createOrder(payload));
       // Add small delay between orders
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      await new Promise((resolve) => setTimeout(resolve, speedMs));
     }
   },
 );

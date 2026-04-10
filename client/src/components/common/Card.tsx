@@ -17,7 +17,7 @@ export const Card = ({
 }: CardProps) => (
   <section
     className={classNames(
-      "rounded-[32px] border border-white/60 bg-white/85 p-7 backdrop-blur-2xl transition-all duration-500 shadow-[0_1px_0_rgba(255,255,255,0.9)_inset,0_8px_32px_-4px_rgba(100,116,139,0.12)] dark:border-indigo-500/10 dark:bg-[#0e172a] dark:shadow-[0_1px_0_rgba(255,255,255,0.03)_inset,0_20px_48px_-8px_rgba(0,0,0,0.6)]",
+      "rounded-4xl border border-white/60 bg-white/85 p-7 backdrop-blur-2xl transition-all duration-500 shadow-[0_1px_0_rgba(255,255,255,0.9)_inset,0_8px_32px_-4px_rgba(100,116,139,0.12)] dark:border-indigo-500/10 dark:bg-[#0e172a] dark:shadow-[0_1px_0_rgba(255,255,255,0.03)_inset,0_20px_48px_-8px_rgba(0,0,0,0.6)]",
       className,
     )}
   >
