@@ -43,7 +43,7 @@ export const Sidebar = () => {
       <div className="flex items-center gap-4 px-2 pt-2">
         <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-[18px] bg-linear-to-br from-indigo-600 to-cyan-500 shadow-lg shadow-indigo-500/30">
           <img
-            src="../../../public/images/cabybara.png"
+            src="https://res.cloudinary.com/dmzvum1lp/image/upload/q_auto/f_auto/v1775824412/cabybara_esqgtp.png"
             alt="Capybara Logo"
             className="h-12 w-12 object-contain drop-shadow-md"
           />
